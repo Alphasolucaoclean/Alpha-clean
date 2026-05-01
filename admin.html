@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Clean - Painel Admin</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --gold: #c9a84c;
+            --gold-bg: #fef9e7;
+            --blue: #2563eb;
+            --blue-light: #3b82f6;
+            --blue-bg: #eff6ff;
+            --blue-dark: #1e40af;
+            --green: #16a34a;
+            --green-bg: #f0fdf4;
+            --red: #ef4444;
+            --orange: #f59e0b;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 16px;
+        }
+
+        .container { max-width: 500px; margin: 0 auto; }
+
+        .header { text-align: center; padding: 16px 0; }
+        .logo-container {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .logo-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 900;
+            color: #fff;
+        }
+        .logo-text .brand { font-size: 18px; font-weight: 700; letter-spacing: 2px; color: var(--blue-dark); }
+        .logo-text .brand span { color: var(--gold); }
+        .logo-text .sub { font-size: 9px; letter-spacing: 3px; color: var(--text-secondary); }
+
+        .tabs {
+            display: flex;
+            gap: 4px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 4px;
+            margin: 14px 0;
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+        }
+        .tab {
+            flex: 1;
+            padding: 10px 8px;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 11px;
+            transition: all .2s;
+            color: var(--text-secondary);
+            border: none;
+            background: transparent;
+            white-space: nowrap;
+        }
+        .tab.active { background: var(--blue); color: #fff; }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 14px;
+            box-shadow: var(--shadow);
+        }
+        .card-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        .client-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+        .client-item .cashback-mini {
+            font-weight: 700;
+            color: #b8860b;
+            background: var(--gold-bg);
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .form-group { margin-bottom: 12px; }
+        label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        input, select, textarea {
+            width: 100%;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        textarea { resize: vertical; min-height: 50px; }
+
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+        .service-tag {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all .2s;
+            color: var(--text-secondary);
+            user-select: none;
+        }
+        .service-tag.selected {
+            background: var(--blue-bg);
+            color: var(--blue);
+            border-color: var(--blue);
+            font-weight: 600;
+        }
+
+        .btn {
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all .2s;
+        }
+        .btn-primary { background: var(--blue); color: #fff; width: 100%; }
+        .btn-primary:hover { background: var(--blue-light); }
+        .btn-outline {
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-sm { padding: 6px 10px; font-size: 11px; }
+        .btn-xs { padding: 4px 8px; font-size: 10px; border-radius: 6px; }
+        .btn-copy { background: var(--gold-bg); color: #b8860b; border: 1px solid var(--gold); }
+        .btn-danger { background: var(--red); color: #fff; }
+        .btn-gold { background: var(--gold); color: #fff; }
+        .btn-green { background: var(--green); color: #fff; }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: 400;
+        }
+        .discount-badge {
+            display: inline-block;
+            background: var(--green-bg);
+            color: var(--green);
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        .oferta-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .oferta-card.destaque {
+            border-color: var(--gold);
+            background: var(--gold-bg);
+        }
+        .oferta-card .oferta-titulo { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+        .oferta-card .oferta-desc { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
+        .oferta-card .oferta-preco { font-size: 20px; font-weight: 700; color: var(--green); }
+        .oferta-card .oferta-badge {
+            position: absolute;
+            top: -8px;
+            right: 12px;
+            background: var(--red);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        .hidden { display: none !important; }
+        .empty-state { text-align: center; padding: 24px; color: var(--text-secondary); font-size: 13px; }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15,23,42,0.7);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 22px;
+            width: 100%;
+            max-width: 420px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        .modal h3 { margin-bottom: 14px; color: var(--blue-dark); font-size: 17px; }
+        .modal-buttons { display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
+
+        .qr-code-wrapper {
+            display: inline-block;
+            background: #fff;
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin: 8px 0;
+        }
+        .link-box {
+            background: #f8fafc;
+            border: 1px dashed var(--border);
+            border-radius: 10px;
+            padding: 10px;
+            margin: 8px 0;
+            word-break: break-all;
+            font-size: 11px;
+            color: var(--blue);
+            text-align: center;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #fff;
+            padding: 12px 22px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 13px;
+            z-index: 200;
+            opacity: 0;
+            transition: opacity .3s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .toast.show { opacity: 1; }
+        .toast.success { background: var(--green); }
+
+        @media (max-width: 400px) {
+            .tab { font-size: 10px; padding: 8px 4px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo-icon">A</div>
+                <div class="logo-text">
+                    <div class="brand">ALPHA <span>CLEAN</span></div>
+                    <div class="sub">Painel Admin</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('clients')">👥 Clientes</button>
+            <button class="tab" onclick="switchTab('register')">📝 Serviço</button>
+            <button class="tab" onclick="switchTab('offers')">🎯 Ofertas</button>
+            <button class="tab" onclick="switchTab('config')">⚙️ Config</button>
+        </div>
+
+        <div id="tab-clients">
+            <div class="card">
+                <div class="card-title">👥 Clientes <button class="btn btn-primary btn-sm" style="width:auto;float:right;" onclick="openNewClientModal()">+ Novo</button></div>
+                <div id="clientList"><div class="empty-state">Carregando...</div></div>
+            </div>
+        </div>
+
+        <div id="tab-register" class="hidden">
+            <div class="card">
+                <div class="card-title">📝 Registrar Serviço</div>
+                <div class="form-group">
+                    <label>Cliente</label>
+                    <select id="serviceClientSelect"><option value="">-- Selecionar --</option></select>
+                </div>
+                <div class="form-group">
+                    <label>Serviço</label>
+                    <div class="service-tags" id="serviceTags">
+                        <span class="service-tag" data-service="Higienização de Sofá">🛋️ Sofá</span>
+                        <span class="service-tag" data-service="Higienização de Colchão">🛏️ Colchão</span>
+                        <span class="service-tag" data-service="Higienização de Cadeira">🪑 Cadeira</span>
+                        <span class="service-tag" data-service="Interior de Carro">🚗 Interior Carro</span>
+                        <span class="service-tag" data-service="Lavagem Ecológica">🌿 Lav. Ecológica</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Valor (R$)</label>
+                    <input type="number" id="serviceValue" placeholder="150,00" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="useCashback"> 🎁 Usar cashback
+                    </label>
+                    <div id="cashbackInfo" style="display:none;">
+                        <span class="discount-badge">💚 Disponível: <strong id="availableCashback">R$ 0,00</strong></span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="registerService()">✅ Registrar</button>
+            </div>
+        </div>
+
+        <div id="tab-offers" class="hidden">
+            <div class="card">
+                <div class="card-title">🎯 Ofertas <button class="btn btn-gold btn-sm" style="width:auto;float:right;" onclick="openNovaOfertaModal()">+ Nova</button></div>
+                <div id="ofertasList"><div class="empty-state">Carregando...</div></div>
+            </div>
+        </div>
+
+        <div id="tab-config" class="hidden">
+            <div class="card">
+                <div class="card-title">⚙️ Configurações</div>
+                <div class="form-group">
+                    <label>WhatsApp da empresa</label>
+                    <input type="text" id="configWhatsApp" placeholder="(XX) XXXXX-XXXX">
+                </div>
+                <div class="form-group">
+                    <label>Mensagem padrão</label>
+                    <input type="text" id="configMsgWhatsApp" placeholder="Olá! Alpha Clean!">
+                </div>
+                <button class="btn btn-primary" onclick="salvarConfig()">💾 Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Novo Cliente -->
+    <div class="modal-overlay" id="newClientModal">
+        <div class="modal">
+            <h3>✨ Novo Cliente</h3>
+            <div class="form-group">
+                <label>Nome</label>
+                <input type="text" id="newName" placeholder="Nome completo">
+            </div>
+            <div class="form-group">
+                <label>WhatsApp</label>
+                <input type="text" id="newPhone" placeholder="(XX) XXXXX-XXXX">
+            </div>
+            <div class="modal-buttons">
+                <button class="btn btn-outline" onclick="closeNewClientModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="addClient()">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Link + QR Code -->
+    <div class="modal-overlay" id="linkModal">
+        <div class="modal">
+            <h3>🔗 Acesso do Cliente</h3>
+            <p style="font-size:13px;margin-bottom:10px;"><strong id="linkClientName"></strong></p>
+            <div style="text-align:center;">
+                <p style="font-weight:700;color:var(--blue-dark);font-size:13px;">📱 QR Code</p>
+                <div class="qr-code-wrapper" id="qrCodeContainer"></div>
+            </div>
+            <p style="font-weight:700;color:var(--blue-dark);font-size:12px;margin-top:8px;">🔗 Link</p>
+            <div class="link-box" id="linkUrl"></div>
+            <p style="font-size:11px;text-align:center;margin:6px 0;">Código: <strong id="linkCode" style="color:var(--blue);font-size:16px;letter-spacing:2px;"></strong></p>
+            <div class="modal-buttons">
+                <button class="btn btn-copy btn-sm" onclick="copyLink()">📋 Copiar</button>
+                <button class="btn btn-green btn-sm" onclick="shareWhatsAppLink()">📱 WhatsApp</button>
+                <button class="btn btn-outline btn-sm" onclick="closeLinkModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Oferta -->
+    <div class="modal-overlay" id="novaOfertaModal">
+        <div class="modal">
+            <h3>🎯 <span id="ofertaModalTitle">Nova Oferta</span></h3>
+            <input type="hidden" id="ofertaEditId">
+            <div class="form-group">
+                <label>Título</label>
+                <input type="text" id="ofertaTitulo" placeholder="Super Promoção!">
+            </div>
+            <div class="form-group">
+                <label>Descrição</label>
+                <textarea id="ofertaDesc" placeholder="Detalhes..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Preço (R$)</label>
+                <input type="number" id="ofertaPreco" placeholder="129,90" step="0.01">
+            </div>
+            <div class="form-group">
+                <label>Preço original (opcional)</label>
+                <input type="number" id="ofertaPrecoOriginal" placeholder="199,90" step="0.01">
+            </div>
+            <div class="form-group">
+                <label><input type="checkbox" id="ofertaDestaque" style="width:auto;"> ⭐ Destacar</label>
+            </div>
+            <div class="form-group">
+                <label>Válido até</label>
+                <input type="date" id="ofertaValidade">
+            </div>
+            <div class="modal-buttons">
+                <button class="btn btn-outline" onclick="closeNovaOfertaModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="salvarOferta()">Publicar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ============ CONFIGURAÇÕES ============
+        const API_KEY = '$2a$10$4L9JW3FJilcxJxYzakIlaeAKtcCqrLoQWP4mGAmN81OaT3ih4M9Ey';
+        const CLIENTES_BIN_ID = '69f51701aaba8821975ec0e9';
+        const OFERTAS_BIN_ID = '69f5173436566621a814f088';
+        const CONFIG_BIN_ID = '69f51754856a68218996c653';
+
+        let currentTab = 'clients';
+        let clientesCache = [];
+        let ofertasCache = [];
+        let configCache = {};
+        let currentLinkCliente = null;
+
+        // ============ API ============
+        async function loadClientes() {
+            const resp = await fetch(`https://api.jsonbin.io/v3/b/${CLIENTES_BIN_ID}/latest`, {
+                headers: { 'X-Master-Key': API_KEY }
+            });
+            const data = await resp.json();
+            clientesCache = data.record.filter(c => c.nome !== 'Cliente Exemplo');
+            return clientesCache;
+        }
+
+        async function saveClientes() {
+            await fetch(`https://api.jsonbin.io/v3/b/${CLIENTES_BIN_ID}`, {
+                method: 'PUT',
+                headers: { 'X-Master-Key': API_KEY, 'Content-Type': 'application/json' },
+                body: JSON.stringify(clientesCache)
+            });
+        }
+
+        async function loadOfertas() {
+            const resp = await fetch(`https://api.jsonbin.io/v3/b/${OFERTAS_BIN_ID}/latest`, {
+                headers: { 'X-Master-Key': API_KEY }
+            });
+            const data = await resp.json();
+            ofertasCache = data.record.filter(o => o.titulo !== 'Bem-vindo!');
+            return ofertasCache;
+        }
+
+        async function saveOfertas() {
+            await fetch(`https://api.jsonbin.io/v3/b/${OFERTAS_BIN_ID}`, {
+                method: 'PUT',
+                headers: { 'X-Master-Key': API_KEY, 'Content-Type': 'application/json' },
+                body: JSON.stringify(ofertasCache)
+            });
+        }
+
+        async function loadConfig() {
+            const resp = await fetch(`https://api.jsonbin.io/v3/b/${CONFIG_BIN_ID}/latest`, {
+                headers: { 'X-Master-Key': API_KEY }
+            });
+            const data = await resp.json();
+            configCache = data.record;
+            return configCache;
+        }
+
+        async function saveConfig() {
+            await fetch(`https://api.jsonbin.io/v3/b/${CONFIG_BIN_ID}`, {
+                method: 'PUT',
+                headers: { 'X-Master-Key': API_KEY, 'Content-Type': 'application/json' },
+                body: JSON.stringify(configCache)
+            });
+        }
+
+        // ============ NAVEGAÇÃO ============
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab').forEach((t, i) => {
+                t.classList.toggle('active', i === ['clients','register','offers','config'].indexOf(tab));
+            });
+            document.querySelectorAll('[id^="tab-"]').forEach(p => p.classList.add('hidden'));
+            document.getElementById('tab-' + tab).classList.remove('hidden');
+            if (tab === 'clients') renderClientList();
+            if (tab === 'register') renderServiceSelect();
+            if (tab === 'offers') renderOfertasList();
+            if (tab === 'config') carregarConfig();
+        }
+
+        // ============ CLIENTES ============
+        async function renderClientList() {
+            await loadClientes();
+            const list = document.getElementById('clientList');
+            if (clientesCache.length === 0) {
+                list.innerHTML = '<div class="empty-state">Nenhum cliente</div>';
+                return;
+            }
+            list.innerHTML = clientesCache.map(c => `
+                <div class="client-item">
+                    <div style="flex:1;">
+                        <strong>${c.nome}</strong><br>
+                        <small style="color:var(--text-secondary);">${c.telefone}</small>
+                    </div>
+                    <span class="cashback-mini">R$ ${c.saldoCashback.toFixed(2)}</span>
+                    <button class="btn btn-copy btn-xs" onclick="openLinkModal('${c.id}')">📱</button>
+                </div>
+            `).join('');
+        }
+
+        async function renderServiceSelect() {
+            await loadClientes();
+            const select = document.getElementById('serviceClientSelect');
+            select.innerHTML = '<option value="">-- Selecionar --</option>' +
+                clientesCache.map(c => `<option value="${c.id}">${c.nome} (R$ ${c.saldoCashback.toFixed(2)})</option>`).join('');
+        }
+
+        document.getElementById('serviceClientSelect').addEventListener('change', function() {
+            const cliente = clientesCache.find(c => c.id === this.value);
+            if (cliente && cliente.saldoCashback > 0) {
+                document.getElementById('cashbackInfo').style.display = '';
+                document.getElementById('availableCashback').textContent = `R$ ${cliente.saldoCashback.toFixed(2)}`;
+            } else {
+                document.getElementById('cashbackInfo').style.display = 'none';
+                document.getElementById('useCashback').checked = false;
+            }
+        });
+
+        async function registerService() {
+            const clientId = document.getElementById('serviceClientSelect').value;
+            if (!clientId) return showToast('Selecione um cliente');
+
+            const cliente = clientesCache.find(c => c.id === clientId);
+            const tags = document.querySelectorAll('#tab-register .service-tag.selected');
+            const servicos = Array.from(tags).map(t => t.dataset.service);
+            const desc = servicos.length > 0 ? servicos.join(' + ') : 'Serviço';
+            if (servicos.length === 0) return showToast('Selecione o serviço');
+
+            const valor = parseFloat(document.getElementById('serviceValue').value);
+            if (!valor || valor <= 0) return showToast('Informe o valor');
+
+            const usarCashback = document.getElementById('useCashback').checked;
+            let valorFinal = valor;
+            let cashbackUsado = 0;
+
+            if (usarCashback && cliente.saldoCashback > 0) {
+                cashbackUsado = Math.min(cliente.saldoCashback, valorFinal);
+                valorFinal = valor - cashbackUsado;
+                cliente.saldoCashback -= cashbackUsado;
+            }
+
+            const cashbackGanho = Math.round(valorFinal * 0.10 * 100) / 100;
+            cliente.saldoCashback += cashbackGanho;
+            const agora = new Date().toISOString();
+
+            cliente.transacoes.push({
+                id: Date.now().toString(36),
+                data: agora,
+                tipo: 'servico',
+                descricao: desc,
+                valor,
+                cashbackUsado,
+                cashbackGanho,
+                valorFinal
+            });
+            if (cashbackGanho > 0) {
+                cliente.transacoes.push({
+                    id: Date.now().toString(36) + 'c',
+                    data: agora,
+                    tipo: 'cashback_ganho',
+                    descricao: `Cashback 10% - ${desc}`,
+                    valor: cashbackGanho
+                });
+            }
+            if (cashbackUsado > 0) {
+                cliente.transacoes.push({
+                    id: Date.now().toString(36) + 'u',
+                    data: agora,
+                    tipo: 'cashback_usado',
+                    descricao: `Cashback utilizado - ${desc}`,
+                    valor: cashbackUsado
+                });
+            }
+
+            await saveClientes();
+            clearServiceForm();
+            showToast(`✅ Cashback: +R$ ${cashbackGanho.toFixed(2)}`, false, true);
+        }
+
+        function clearServiceForm() {
+            document.querySelectorAll('#tab-register .service-tag').forEach(t => t.classList.remove('selected'));
+            document.getElementById('serviceValue').value = '';
+            document.getElementById('useCashback').checked = false;
+            document.getElementById('cashbackInfo').style.display = 'none';
+        }
+
+        function openNewClientModal() {
+            document.getElementById('newClientModal').classList.add('active');
+        }
+
+        function closeNewClientModal() {
+            document.getElementById('newClientModal').classList.remove('active');
+            document.getElementById('newName').value = '';
+            document.getElementById('newPhone').value = '';
+        }
+
+        async function addClient() {
+            const nome = document.getElementById('newName').value.trim();
+            const telefone = document.getElementById('newPhone').value.trim();
+            if (!nome || !telefone) return showToast('Preencha todos os campos');
+
+            const novoCliente = {
+                id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5),
+                nome,
+                telefone,
+                saldoCashback: 0,
+                codigoAcesso: Math.floor(100000 + Math.random() * 900000).toString(),
+                transacoes: [],
+                criadoEm: new Date().toISOString()
+            };
+
+            clientesCache.push(novoCliente);
+            await saveClientes();
+            closeNewClientModal();
+            renderClientList();
+            renderServiceSelect();
+            openLinkModal(novoCliente.id);
+            showToast(`✅ ${nome} cadastrado!`, false, true);
+        }
+
+        // ============ LINK + QR ============
+        function openLinkModal(clientId) {
+            const cliente = clientesCache.find(c => c.id === clientId);
+            if (!cliente) return;
+            currentLinkCliente = cliente;
+
+            document.getElementById('linkClientName').textContent = cliente.nome;
+            document.getElementById('linkCode').textContent = cliente.codigoAcesso;
+
+            const baseUrl = window.location.origin + window.location.pathname.replace('admin.html', '');
+            const link = `${baseUrl}cliente.html?id=${clientId}&codigo=${cliente.codigoAcesso}`;
+            document.getElementById('linkUrl').textContent = link;
+            document.getElementById('linkUrl').dataset.link = link;
+
+            document.getElementById('qrCodeContainer').innerHTML = '';
+            new QRCode(document.getElementById('qrCodeContainer'), {
+                text: link,
+                width: 180,
+                height: 180,
+                colorDark: '#1e40af',
+                colorLight: '#ffffff'
+            });
+
+            document.getElementById('linkModal').classList.add('active');
+        }
+
+        function closeLinkModal() {
+            document.getElementById('linkModal').classList.remove('active');
+        }
+
+        function copyLink() {
+            const link = document.getElementById('linkUrl').dataset.link;
+            navigator.clipboard.writeText(link).then(() => showToast('📋 Link copiado!'));
+        }
+
+        function shareWhatsAppLink() {
+            const link = document.getElementById('linkUrl').dataset.link;
+            const msg = encodeURIComponent(`Olá! Acesse seu cashback Alpha Clean:\n${link}\nCódigo: ${currentLinkCliente.codigoAcesso}`);
+            const phone = currentLinkCliente.telefone.replace(/\D/g, '');
+            window.open(`https://wa.me/55${phone}?text=${msg}`, '_blank');
+        }
+
+        // ============ OFERTAS ============
+        async function renderOfertasList() {
+            await loadOfertas();
+            const list = document.getElementById('ofertasList');
+            if (ofertasCache.length === 0) {
+                list.innerHTML = '<div class="empty-state">Nenhuma oferta</div>';
+                return;
+            }
+            list.innerHTML = ofertasCache.map((o, i) => `
+                <div class="oferta-card${o.destaque ? ' destaque' : ''}">
+                    ${o.destaque ? '<span class="oferta-badge">⭐</span>' : ''}
+                    <div class="oferta-titulo">${o.titulo}</div>
+                    <div class="oferta-desc">${o.descricao}</div>
+                    <div class="oferta-preco">R$ ${o.preco.toFixed(2)}</div>
+                    <div style="margin-top:6px;font-size:11px;">${o.ativa ? '✅ Ativa' : '⏸ Pausada'}</div>
+                    <div style="margin-top:4px;">
+                        <button class="btn btn-outline btn-xs" onclick="editarOferta(${i})">✏️</button>
+                        <button class="btn btn-xs ${o.ativa ? 'btn-outline' : 'btn-green'}" onclick="toggleOferta(${i})">${o.ativa ? '⏸' : '▶️'}</button>
+                        <button class="btn btn-danger btn-xs" onclick="removerOferta(${i})">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openNovaOfertaModal(index = null) {
+            document.getElementById('ofertaEditId').value = index !== null ? index : '';
+            document.getElementById('ofertaModalTitle').textContent = index !== null ? 'Editar Oferta' : 'Nova Oferta';
+            if (index !== null) {
+                const o = ofertasCache[index];
+                document.getElementById('ofertaTitulo').value = o.titulo;
+                document.getElementById('ofertaDesc').value = o.descricao;
+                document.getElementById('ofertaPreco').value = o.preco;
+                document.getElementById('ofertaPrecoOriginal').value = o.precoOriginal || '';
+                document.getElementById('ofertaDestaque').checked = o.destaque;
+                document.getElementById('ofertaValidade').value = o.validade || '';
+            } else {
+                ['ofertaTitulo','ofertaDesc','ofertaPreco','ofertaPrecoOriginal','ofertaValidade'].forEach(id => {
+                    document.getElementById(id).value = '';
+                });
+                document.getElementById('ofertaDestaque').checked = false;
+            }
+            document.getElementById('novaOfertaModal').classList.add('active');
+        }
+
+        function editarOferta(i) { openNovaOfertaModal(i); }
+
+        function closeNovaOfertaModal() { document.getElementById('novaOfertaModal').classList.remove('active'); }
+
+        async function salvarOferta() {
+            const titulo = document.getElementById('ofertaTitulo').value.trim();
+            const descricao = document.getElementById('ofertaDesc').value.trim();
+            const preco = parseFloat(document.getElementById('ofertaPreco').value);
+            if (!titulo || !preco) return showToast('Preencha título e preço');
+
+            const oferta = {
+                titulo,
+                descricao,
+                preco,
+                precoOriginal: parseFloat(document.getElementById('ofertaPrecoOriginal').value) || null,
+                destaque: document.getElementById('ofertaDestaque').checked,
+                validade: document.getElementById('ofertaValidade').value || null,
+                ativa: true,
+                criadaEm: new Date().toISOString()
+            };
+
+            const editId = document.getElementById('ofertaEditId').value;
+            if (editId !== '') {
+                oferta.ativa = ofertasCache[parseInt(editId)].ativa;
+                ofertasCache[parseInt(editId)] = oferta;
+            } else {
+                ofertasCache.push(oferta);
+            }
+            await saveOfertas();
+            closeNovaOfertaModal();
+            renderOfertasList();
+            showToast('✅ Oferta salva!', false, true);
+        }
+
+        async function toggleOferta(i) {
+            ofertasCache[i].ativa = !ofertasCache[i].ativa;
+            await saveOfertas();
+            renderOfertasList();
+        }
+
+        async function removerOferta(i) {
+            if (!confirm('Remover oferta?')) return;
+            ofertasCache.splice(i, 1);
+            await saveOfertas();
+            renderOfertasList();
+        }
+
+        // ============ CONFIG ============
+        async function carregarConfig() {
+            await loadConfig();
+            document.getElementById('configWhatsApp').value = configCache.telefoneEmpresa || '';
+            document.getElementById('configMsgWhatsApp').value = configCache.mensagemWhatsApp || '';
+        }
+
+        async function salvarConfig() {
+            configCache.telefoneEmpresa = document.getElementById('configWhatsApp').value.trim();
+            configCache.mensagemWhatsApp = document.getElementById('configMsgWhatsApp').value.trim();
+            await saveConfig();
+            showToast('✅ Configurações salvas!', false, true);
+        }
+
+        // ============ EVENTOS ============
+        document.getElementById('serviceTags').addEventListener('click', function(e) {
+            if (e.target.classList.contains('service-tag')) {
+                e.target.classList.toggle('selected');
+            }
+        });
+
+        document.querySelectorAll('.modal-overlay').forEach(m => {
+            m.addEventListener('click', function(e) {
+                if (e.target === this) this.classList.remove('active');
+            });
+        });
+
+        // ============ UTILITÁRIOS ============
+        function showToast(msg, isError, isSuccess) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.className = 'toast' + (isSuccess ? ' success' : '');
+            toast.classList.add('show');
+            clearTimeout(toast._timeout);
+            toast._timeout = setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ============ INIT ============
+        async function init() {
+            await loadClientes();
+            await loadConfig();
+            renderClientList();
+            renderServiceSelect();
+        }
+        init();
+    </script>
+</body>
+</html>
