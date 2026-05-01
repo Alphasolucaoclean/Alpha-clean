@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alpha Clean - Painel Admin</title>
+    <title>Alpha Solução Clean - Painel Admin</title>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <style>
         :root {
@@ -19,7 +19,6 @@
             --green: #16a34a;
             --green-bg: #f0fdf4;
             --red: #ef4444;
-            --orange: #f59e0b;
             --text: #1e293b;
             --text-secondary: #64748b;
             --shadow: 0 1px 3px rgba(0,0,0,0.06);
@@ -42,27 +41,29 @@
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 14px;
+            padding: 16px;
             box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            text-align: center;
         }
-        .logo-icon {
-            width: 40px; height: 40px;
-            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
+        .logo-alpha {
+            font-size: 28px;
             font-weight: 900;
-            color: #fff;
+            letter-spacing: 4px;
+            color: var(--blue-dark);
+            line-height: 1;
         }
-        .logo-text .brand { font-size: 18px; font-weight: 700; letter-spacing: 2px; color: var(--blue-dark); }
-        .logo-text .brand span { color: var(--gold); }
-        .logo-text .sub { font-size: 9px; letter-spacing: 3px; color: var(--text-secondary); }
+        .logo-solucao {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--blue);
+        }
+        .logo-tagline {
+            font-size: 8px;
+            letter-spacing: 3px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
 
         .tabs {
             display: flex;
@@ -116,7 +117,11 @@
             border: 1px solid var(--border);
             border-radius: 10px;
             margin-bottom: 8px;
+            gap: 8px;
         }
+        .client-item .info { flex: 1; min-width: 0; }
+        .client-item .info strong { font-size: 14px; }
+        .client-item .info small { font-size: 11px; color: var(--text-secondary); display: block; }
         .client-item .cashback-mini {
             font-weight: 700;
             color: #b8860b;
@@ -124,7 +129,9 @@
             padding: 5px 10px;
             border-radius: 8px;
             font-size: 13px;
+            white-space: nowrap;
         }
+        .client-actions { display: flex; gap: 4px; }
 
         .form-group { margin-bottom: 12px; }
         label {
@@ -183,28 +190,15 @@
         }
         .btn-primary { background: var(--blue); color: #fff; width: 100%; }
         .btn-primary:hover { background: var(--blue-light); }
-        .btn-outline {
-            background: var(--card);
-            border: 1px solid var(--border);
-            color: var(--text);
-        }
+        .btn-outline { background: var(--card); border: 1px solid var(--border); color: var(--text); }
         .btn-sm { padding: 6px 10px; font-size: 11px; }
-        .btn-xs { padding: 4px 8px; font-size: 10px; border-radius: 6px; }
+        .btn-xs { padding: 5px 8px; font-size: 10px; border-radius: 6px; }
         .btn-copy { background: var(--gold-bg); color: #b8860b; border: 1px solid var(--gold); }
         .btn-danger { background: var(--red); color: #fff; }
+        .btn-danger:hover { background: #dc2626; }
         .btn-gold { background: var(--gold); color: #fff; }
         .btn-green { background: var(--green); color: #fff; }
 
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            text-transform: none;
-            letter-spacing: 0;
-            font-weight: 400;
-        }
         .discount-badge {
             display: inline-block;
             background: var(--green-bg);
@@ -242,6 +236,19 @@
             font-size: 9px;
             font-weight: 700;
         }
+        .stars-display { color: var(--gold); font-size: 16px; letter-spacing: 2px; }
+
+        /* Depoimentos no admin */
+        .depoimento-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 8px;
+        }
+        .depoimento-item .stars { color: var(--gold); font-size: 14px; }
+        .depoimento-item .texto { font-size: 13px; font-style: italic; margin: 4px 0; }
+        .depoimento-item .autor { font-size: 11px; color: var(--text-secondary); font-weight: 600; }
 
         .hidden { display: none !important; }
         .empty-state { text-align: center; padding: 24px; color: var(--text-secondary); font-size: 13px; }
@@ -319,11 +326,9 @@
     <div class="container">
         <div class="header">
             <div class="logo-container">
-                <div class="logo-icon">A</div>
-                <div class="logo-text">
-                    <div class="brand">ALPHA <span>CLEAN</span></div>
-                    <div class="sub">Painel Admin</div>
-                </div>
+                <div class="logo-alpha">ALPHA</div>
+                <div class="logo-solucao">SOLUÇÃO CLEAN</div>
+                <div class="logo-tagline">Limpeza com Excelência • Painel Admin</div>
             </div>
         </div>
 
@@ -331,6 +336,7 @@
             <button class="tab active" onclick="switchTab('clients')">👥 Clientes</button>
             <button class="tab" onclick="switchTab('register')">📝 Serviço</button>
             <button class="tab" onclick="switchTab('offers')">🎯 Ofertas</button>
+            <button class="tab" onclick="switchTab('depoimentos')">⭐ Depoimentos</button>
             <button class="tab" onclick="switchTab('config')">⚙️ Config</button>
         </div>
 
@@ -349,7 +355,7 @@
                     <select id="serviceClientSelect"><option value="">-- Selecionar --</option></select>
                 </div>
                 <div class="form-group">
-                    <label>Serviço</label>
+                    <label>Tipo de serviço (selecione ou escreva)</label>
                     <div class="service-tags" id="serviceTags">
                         <span class="service-tag" data-service="Higienização de Sofá">🛋️ Sofá</span>
                         <span class="service-tag" data-service="Higienização de Colchão">🛏️ Colchão</span>
@@ -357,6 +363,7 @@
                         <span class="service-tag" data-service="Interior de Carro">🚗 Interior Carro</span>
                         <span class="service-tag" data-service="Lavagem Ecológica">🌿 Lav. Ecológica</span>
                     </div>
+                    <input type="text" id="outroServico" placeholder="Ou digite outro serviço...">
                 </div>
                 <div class="form-group">
                     <label>Valor (R$)</label>
@@ -364,7 +371,7 @@
                 </div>
                 <div class="form-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" id="useCashback"> 🎁 Usar cashback
+                        <input type="checkbox" id="useCashback" style="width:auto;"> 🎁 Usar cashback
                     </label>
                     <div id="cashbackInfo" style="display:none;">
                         <span class="discount-badge">💚 Disponível: <strong id="availableCashback">R$ 0,00</strong></span>
@@ -381,6 +388,13 @@
             </div>
         </div>
 
+        <div id="tab-depoimentos" class="hidden">
+            <div class="card">
+                <div class="card-title">⭐ Depoimentos de Clientes</div>
+                <div id="depoimentosList"><div class="empty-state">Nenhum depoimento ainda</div></div>
+            </div>
+        </div>
+
         <div id="tab-config" class="hidden">
             <div class="card">
                 <div class="card-title">⚙️ Configurações</div>
@@ -390,7 +404,7 @@
                 </div>
                 <div class="form-group">
                     <label>Mensagem padrão</label>
-                    <input type="text" id="configMsgWhatsApp" placeholder="Olá! Alpha Clean!">
+                    <input type="text" id="configMsgWhatsApp" placeholder="Olá! Alpha Solução Clean!">
                 </div>
                 <button class="btn btn-primary" onclick="salvarConfig()">💾 Salvar</button>
             </div>
@@ -416,7 +430,20 @@
         </div>
     </div>
 
-    <!-- Modal Link + QR Code -->
+    <!-- Modal Confirmação Remover -->
+    <div class="modal-overlay" id="confirmRemoveModal">
+        <div class="modal">
+            <h3>🗑️ Remover Cliente?</h3>
+            <p style="font-size:14px;color:var(--text-secondary);">Remover <strong id="removeClientName"></strong>? O histórico será perdido.</p>
+            <input type="hidden" id="removeClientId">
+            <div class="modal-buttons">
+                <button class="btn btn-outline" onclick="closeConfirmRemove()">Cancelar</button>
+                <button class="btn btn-danger" onclick="confirmRemoveClient()">🗑️ Remover</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Link + QR -->
     <div class="modal-overlay" id="linkModal">
         <div class="modal">
             <h3>🔗 Acesso do Cliente</h3>
@@ -441,29 +468,12 @@
         <div class="modal">
             <h3>🎯 <span id="ofertaModalTitle">Nova Oferta</span></h3>
             <input type="hidden" id="ofertaEditId">
-            <div class="form-group">
-                <label>Título</label>
-                <input type="text" id="ofertaTitulo" placeholder="Super Promoção!">
-            </div>
-            <div class="form-group">
-                <label>Descrição</label>
-                <textarea id="ofertaDesc" placeholder="Detalhes..."></textarea>
-            </div>
-            <div class="form-group">
-                <label>Preço (R$)</label>
-                <input type="number" id="ofertaPreco" placeholder="129,90" step="0.01">
-            </div>
-            <div class="form-group">
-                <label>Preço original (opcional)</label>
-                <input type="number" id="ofertaPrecoOriginal" placeholder="199,90" step="0.01">
-            </div>
-            <div class="form-group">
-                <label><input type="checkbox" id="ofertaDestaque" style="width:auto;"> ⭐ Destacar</label>
-            </div>
-            <div class="form-group">
-                <label>Válido até</label>
-                <input type="date" id="ofertaValidade">
-            </div>
+            <div class="form-group"><label>Título</label><input type="text" id="ofertaTitulo" placeholder="Super Promoção!"></div>
+            <div class="form-group"><label>Descrição</label><textarea id="ofertaDesc" placeholder="Detalhes..."></textarea></div>
+            <div class="form-group"><label>Preço (R$)</label><input type="number" id="ofertaPreco" placeholder="129,90" step="0.01"></div>
+            <div class="form-group"><label>Preço original (opcional)</label><input type="number" id="ofertaPrecoOriginal" placeholder="199,90" step="0.01"></div>
+            <div class="form-group"><label><input type="checkbox" id="ofertaDestaque" style="width:auto;"> ⭐ Destacar</label></div>
+            <div class="form-group"><label>Válido até</label><input type="date" id="ofertaValidade"></div>
             <div class="modal-buttons">
                 <button class="btn btn-outline" onclick="closeNovaOfertaModal()">Cancelar</button>
                 <button class="btn btn-primary" onclick="salvarOferta()">Publicar</button>
@@ -474,25 +484,25 @@
     <div class="toast" id="toast"></div>
 
     <script>
-        // ============ CONFIGURAÇÕES ============
         const API_KEY = '$2a$10$4L9JW3FJilcxJxYzakIlaeAKtcCqrLoQWP4mGAmN81OaT3ih4M9Ey';
         const CLIENTES_BIN_ID = '69f51701aaba8821975ec0e9';
         const OFERTAS_BIN_ID = '69f5173436566621a814f088';
         const CONFIG_BIN_ID = '69f51754856a68218996c653';
+        const DEPOIMENTOS_BIN_ID = '69f51754856a68218996c653'; // mesmo bin do config, campo depoimentos
 
         let currentTab = 'clients';
         let clientesCache = [];
         let ofertasCache = [];
         let configCache = {};
+        let depoimentosCache = [];
         let currentLinkCliente = null;
 
-        // ============ API ============
         async function loadClientes() {
             const resp = await fetch(`https://api.jsonbin.io/v3/b/${CLIENTES_BIN_ID}/latest`, {
                 headers: { 'X-Master-Key': API_KEY }
             });
             const data = await resp.json();
-            clientesCache = data.record.filter(c => c.nome !== 'Cliente Exemplo');
+            clientesCache = Array.isArray(data.record) ? data.record.filter(c => c.nome !== 'Cliente Exemplo') : [];
             return clientesCache;
         }
 
@@ -509,7 +519,7 @@
                 headers: { 'X-Master-Key': API_KEY }
             });
             const data = await resp.json();
-            ofertasCache = data.record.filter(o => o.titulo !== 'Bem-vindo!');
+            ofertasCache = Array.isArray(data.record) ? data.record.filter(o => o.titulo !== 'Bem-vindo!') : [];
             return ofertasCache;
         }
 
@@ -526,11 +536,13 @@
                 headers: { 'X-Master-Key': API_KEY }
             });
             const data = await resp.json();
-            configCache = data.record;
+            configCache = data.record || {};
+            depoimentosCache = configCache.depoimentos || [];
             return configCache;
         }
 
         async function saveConfig() {
+            configCache.depoimentos = depoimentosCache;
             await fetch(`https://api.jsonbin.io/v3/b/${CONFIG_BIN_ID}`, {
                 method: 'PUT',
                 headers: { 'X-Master-Key': API_KEY, 'Content-Type': 'application/json' },
@@ -538,38 +550,60 @@
             });
         }
 
-        // ============ NAVEGAÇÃO ============
         function switchTab(tab) {
             currentTab = tab;
+            const tabs = ['clients','register','offers','depoimentos','config'];
             document.querySelectorAll('.tab').forEach((t, i) => {
-                t.classList.toggle('active', i === ['clients','register','offers','config'].indexOf(tab));
+                t.classList.toggle('active', i === tabs.indexOf(tab));
             });
             document.querySelectorAll('[id^="tab-"]').forEach(p => p.classList.add('hidden'));
             document.getElementById('tab-' + tab).classList.remove('hidden');
             if (tab === 'clients') renderClientList();
             if (tab === 'register') renderServiceSelect();
             if (tab === 'offers') renderOfertasList();
+            if (tab === 'depoimentos') renderDepoimentosList();
             if (tab === 'config') carregarConfig();
         }
 
-        // ============ CLIENTES ============
         async function renderClientList() {
             await loadClientes();
             const list = document.getElementById('clientList');
             if (clientesCache.length === 0) {
-                list.innerHTML = '<div class="empty-state">Nenhum cliente</div>';
+                list.innerHTML = '<div class="empty-state">Nenhum cliente cadastrado</div>';
                 return;
             }
             list.innerHTML = clientesCache.map(c => `
                 <div class="client-item">
-                    <div style="flex:1;">
-                        <strong>${c.nome}</strong><br>
-                        <small style="color:var(--text-secondary);">${c.telefone}</small>
+                    <div class="info">
+                        <strong>${c.nome}</strong>
+                        <small>${c.telefone}</small>
                     </div>
                     <span class="cashback-mini">R$ ${c.saldoCashback.toFixed(2)}</span>
-                    <button class="btn btn-copy btn-xs" onclick="openLinkModal('${c.id}')">📱</button>
+                    <div class="client-actions">
+                        <button class="btn btn-copy btn-xs" onclick="openLinkModal('${c.id}')">📱</button>
+                        <button class="btn btn-danger btn-xs" onclick="openConfirmRemove('${c.id}')">🗑️</button>
+                    </div>
                 </div>
             `).join('');
+        }
+
+        function openConfirmRemove(clientId) {
+            const cliente = clientesCache.find(c => c.id === clientId);
+            if (!cliente) return;
+            document.getElementById('removeClientName').textContent = cliente.nome;
+            document.getElementById('removeClientId').value = clientId;
+            document.getElementById('confirmRemoveModal').classList.add('active');
+        }
+        function closeConfirmRemove() { document.getElementById('confirmRemoveModal').classList.remove('active'); }
+
+        async function confirmRemoveClient() {
+            const clientId = document.getElementById('removeClientId').value;
+            clientesCache = clientesCache.filter(c => c.id !== clientId);
+            await saveClientes();
+            closeConfirmRemove();
+            renderClientList();
+            renderServiceSelect();
+            showToast('Cliente removido', false, true);
         }
 
         async function renderServiceSelect() {
@@ -593,12 +627,14 @@
         async function registerService() {
             const clientId = document.getElementById('serviceClientSelect').value;
             if (!clientId) return showToast('Selecione um cliente');
-
             const cliente = clientesCache.find(c => c.id === clientId);
             const tags = document.querySelectorAll('#tab-register .service-tag.selected');
-            const servicos = Array.from(tags).map(t => t.dataset.service);
-            const desc = servicos.length > 0 ? servicos.join(' + ') : 'Serviço';
-            if (servicos.length === 0) return showToast('Selecione o serviço');
+            const servicosSelecionados = Array.from(tags).map(t => t.dataset.service);
+            const outroServico = document.getElementById('outroServico').value.trim();
+            let descricaoServico = '';
+            if (servicosSelecionados.length > 0) descricaoServico = servicosSelecionados.join(' + ');
+            if (outroServico) descricaoServico = descricaoServico ? descricaoServico + ' + ' + outroServico : outroServico;
+            if (!descricaoServico) return showToast('Selecione ou digite um serviço');
 
             const valor = parseFloat(document.getElementById('serviceValue').value);
             if (!valor || valor <= 0) return showToast('Informe o valor');
@@ -606,83 +642,57 @@
             const usarCashback = document.getElementById('useCashback').checked;
             let valorFinal = valor;
             let cashbackUsado = 0;
-
             if (usarCashback && cliente.saldoCashback > 0) {
                 cashbackUsado = Math.min(cliente.saldoCashback, valorFinal);
                 valorFinal = valor - cashbackUsado;
                 cliente.saldoCashback -= cashbackUsado;
             }
-
             const cashbackGanho = Math.round(valorFinal * 0.10 * 100) / 100;
             cliente.saldoCashback += cashbackGanho;
             const agora = new Date().toISOString();
-
             cliente.transacoes.push({
-                id: Date.now().toString(36),
-                data: agora,
-                tipo: 'servico',
-                descricao: desc,
-                valor,
-                cashbackUsado,
-                cashbackGanho,
-                valorFinal
+                id: Date.now().toString(36), data: agora, tipo: 'servico', descricao: descricaoServico,
+                valor, cashbackUsado, cashbackGanho, valorFinal
             });
             if (cashbackGanho > 0) {
                 cliente.transacoes.push({
-                    id: Date.now().toString(36) + 'c',
-                    data: agora,
-                    tipo: 'cashback_ganho',
-                    descricao: `Cashback 10% - ${desc}`,
-                    valor: cashbackGanho
+                    id: Date.now().toString(36) + 'c', data: agora, tipo: 'cashback_ganho',
+                    descricao: `Cashback 10% - ${descricaoServico}`, valor: cashbackGanho
                 });
             }
             if (cashbackUsado > 0) {
                 cliente.transacoes.push({
-                    id: Date.now().toString(36) + 'u',
-                    data: agora,
-                    tipo: 'cashback_usado',
-                    descricao: `Cashback utilizado - ${desc}`,
-                    valor: cashbackUsado
+                    id: Date.now().toString(36) + 'u', data: agora, tipo: 'cashback_usado',
+                    descricao: `Cashback utilizado - ${descricaoServico}`, valor: cashbackUsado
                 });
             }
-
             await saveClientes();
             clearServiceForm();
+            renderServiceSelect();
             showToast(`✅ Cashback: +R$ ${cashbackGanho.toFixed(2)}`, false, true);
         }
 
         function clearServiceForm() {
             document.querySelectorAll('#tab-register .service-tag').forEach(t => t.classList.remove('selected'));
+            document.getElementById('outroServico').value = '';
             document.getElementById('serviceValue').value = '';
             document.getElementById('useCashback').checked = false;
             document.getElementById('cashbackInfo').style.display = 'none';
         }
 
-        function openNewClientModal() {
-            document.getElementById('newClientModal').classList.add('active');
-        }
-
-        function closeNewClientModal() {
-            document.getElementById('newClientModal').classList.remove('active');
-            document.getElementById('newName').value = '';
-            document.getElementById('newPhone').value = '';
-        }
+        function openNewClientModal() { document.getElementById('newClientModal').classList.add('active'); document.getElementById('newName').focus(); }
+        function closeNewClientModal() { document.getElementById('newClientModal').classList.remove('active'); document.getElementById('newName').value = ''; document.getElementById('newPhone').value = ''; }
 
         async function addClient() {
             const nome = document.getElementById('newName').value.trim();
             const telefone = document.getElementById('newPhone').value.trim();
             if (!nome || !telefone) return showToast('Preencha todos os campos');
-
             const novoCliente = {
                 id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5),
-                nome,
-                telefone,
-                saldoCashback: 0,
+                nome, telefone, saldoCashback: 0,
                 codigoAcesso: Math.floor(100000 + Math.random() * 900000).toString(),
-                transacoes: [],
-                criadoEm: new Date().toISOString()
+                transacoes: [], criadoEm: new Date().toISOString()
             };
-
             clientesCache.push(novoCliente);
             await saveClientes();
             closeNewClientModal();
@@ -692,56 +702,38 @@
             showToast(`✅ ${nome} cadastrado!`, false, true);
         }
 
-        // ============ LINK + QR ============
         function openLinkModal(clientId) {
             const cliente = clientesCache.find(c => c.id === clientId);
             if (!cliente) return;
             currentLinkCliente = cliente;
-
             document.getElementById('linkClientName').textContent = cliente.nome;
             document.getElementById('linkCode').textContent = cliente.codigoAcesso;
-
             const baseUrl = window.location.origin + window.location.pathname.replace('admin.html', '');
             const link = `${baseUrl}cliente.html?id=${clientId}&codigo=${cliente.codigoAcesso}`;
             document.getElementById('linkUrl').textContent = link;
             document.getElementById('linkUrl').dataset.link = link;
-
             document.getElementById('qrCodeContainer').innerHTML = '';
             new QRCode(document.getElementById('qrCodeContainer'), {
-                text: link,
-                width: 180,
-                height: 180,
-                colorDark: '#1e40af',
-                colorLight: '#ffffff'
+                text: link, width: 180, height: 180, colorDark: '#1e40af', colorLight: '#ffffff'
             });
-
             document.getElementById('linkModal').classList.add('active');
         }
-
-        function closeLinkModal() {
-            document.getElementById('linkModal').classList.remove('active');
-        }
-
+        function closeLinkModal() { document.getElementById('linkModal').classList.remove('active'); }
         function copyLink() {
             const link = document.getElementById('linkUrl').dataset.link;
             navigator.clipboard.writeText(link).then(() => showToast('📋 Link copiado!'));
         }
-
         function shareWhatsAppLink() {
             const link = document.getElementById('linkUrl').dataset.link;
-            const msg = encodeURIComponent(`Olá! Acesse seu cashback Alpha Clean:\n${link}\nCódigo: ${currentLinkCliente.codigoAcesso}`);
+            const msg = encodeURIComponent(`Olá! Acesse seu cashback Alpha Solução Clean:\n${link}\nCódigo: ${currentLinkCliente.codigoAcesso}`);
             const phone = currentLinkCliente.telefone.replace(/\D/g, '');
             window.open(`https://wa.me/55${phone}?text=${msg}`, '_blank');
         }
 
-        // ============ OFERTAS ============
         async function renderOfertasList() {
             await loadOfertas();
             const list = document.getElementById('ofertasList');
-            if (ofertasCache.length === 0) {
-                list.innerHTML = '<div class="empty-state">Nenhuma oferta</div>';
-                return;
-            }
+            if (ofertasCache.length === 0) { list.innerHTML = '<div class="empty-state">Nenhuma oferta</div>'; return; }
             list.innerHTML = ofertasCache.map((o, i) => `
                 <div class="oferta-card${o.destaque ? ' destaque' : ''}">
                     ${o.destaque ? '<span class="oferta-badge">⭐</span>' : ''}
@@ -770,62 +762,61 @@
                 document.getElementById('ofertaDestaque').checked = o.destaque;
                 document.getElementById('ofertaValidade').value = o.validade || '';
             } else {
-                ['ofertaTitulo','ofertaDesc','ofertaPreco','ofertaPrecoOriginal','ofertaValidade'].forEach(id => {
-                    document.getElementById(id).value = '';
-                });
+                ['ofertaTitulo','ofertaDesc','ofertaPreco','ofertaPrecoOriginal','ofertaValidade'].forEach(id => document.getElementById(id).value = '');
                 document.getElementById('ofertaDestaque').checked = false;
             }
             document.getElementById('novaOfertaModal').classList.add('active');
         }
-
         function editarOferta(i) { openNovaOfertaModal(i); }
-
         function closeNovaOfertaModal() { document.getElementById('novaOfertaModal').classList.remove('active'); }
 
         async function salvarOferta() {
             const titulo = document.getElementById('ofertaTitulo').value.trim();
-            const descricao = document.getElementById('ofertaDesc').value.trim();
             const preco = parseFloat(document.getElementById('ofertaPreco').value);
             if (!titulo || !preco) return showToast('Preencha título e preço');
-
             const oferta = {
-                titulo,
-                descricao,
-                preco,
+                titulo, descricao: document.getElementById('ofertaDesc').value.trim(), preco,
                 precoOriginal: parseFloat(document.getElementById('ofertaPrecoOriginal').value) || null,
                 destaque: document.getElementById('ofertaDestaque').checked,
                 validade: document.getElementById('ofertaValidade').value || null,
-                ativa: true,
-                criadaEm: new Date().toISOString()
+                ativa: true, criadaEm: new Date().toISOString()
             };
-
             const editId = document.getElementById('ofertaEditId').value;
-            if (editId !== '') {
-                oferta.ativa = ofertasCache[parseInt(editId)].ativa;
-                ofertasCache[parseInt(editId)] = oferta;
-            } else {
-                ofertasCache.push(oferta);
-            }
+            if (editId !== '') { oferta.ativa = ofertasCache[parseInt(editId)].ativa; ofertasCache[parseInt(editId)] = oferta; }
+            else { ofertasCache.push(oferta); }
             await saveOfertas();
             closeNovaOfertaModal();
             renderOfertasList();
             showToast('✅ Oferta salva!', false, true);
         }
 
-        async function toggleOferta(i) {
-            ofertasCache[i].ativa = !ofertasCache[i].ativa;
-            await saveOfertas();
-            renderOfertasList();
+        async function toggleOferta(i) { ofertasCache[i].ativa = !ofertasCache[i].ativa; await saveOfertas(); renderOfertasList(); }
+        async function removerOferta(i) { if (!confirm('Remover oferta?')) return; ofertasCache.splice(i, 1); await saveOfertas(); renderOfertasList(); }
+
+        function renderDepoimentosList() {
+            const list = document.getElementById('depoimentosList');
+            if (depoimentosCache.length === 0) {
+                list.innerHTML = '<div class="empty-state">Nenhum depoimento ainda. Os clientes avaliam após o serviço.</div>';
+                return;
+            }
+            list.innerHTML = depoimentosCache.map((d, i) => `
+                <div class="depoimento-item">
+                    <div class="stars">${'⭐'.repeat(d.estrelas)}</div>
+                    <div class="texto">"${d.texto}"</div>
+                    <div class="autor">— ${d.autor} • ${new Date(d.data).toLocaleDateString('pt-BR')}</div>
+                    <button class="btn btn-danger btn-xs" style="margin-top:4px;" onclick="removerDepoimento(${i})">🗑️ Remover</button>
+                </div>
+            `).join('');
         }
 
-        async function removerOferta(i) {
-            if (!confirm('Remover oferta?')) return;
-            ofertasCache.splice(i, 1);
-            await saveOfertas();
-            renderOfertasList();
+        async function removerDepoimento(i) {
+            if (!confirm('Remover este depoimento?')) return;
+            depoimentosCache.splice(i, 1);
+            await saveConfig();
+            renderDepoimentosList();
+            showToast('Depoimento removido');
         }
 
-        // ============ CONFIG ============
         async function carregarConfig() {
             await loadConfig();
             document.getElementById('configWhatsApp').value = configCache.telefoneEmpresa || '';
@@ -835,24 +826,19 @@
         async function salvarConfig() {
             configCache.telefoneEmpresa = document.getElementById('configWhatsApp').value.trim();
             configCache.mensagemWhatsApp = document.getElementById('configMsgWhatsApp').value.trim();
+            configCache.nomeEmpresa = 'Alpha Solução Clean';
+            configCache.depoimentos = depoimentosCache;
             await saveConfig();
             showToast('✅ Configurações salvas!', false, true);
         }
 
-        // ============ EVENTOS ============
         document.getElementById('serviceTags').addEventListener('click', function(e) {
-            if (e.target.classList.contains('service-tag')) {
-                e.target.classList.toggle('selected');
-            }
+            if (e.target.classList.contains('service-tag')) { e.target.classList.toggle('selected'); }
         });
-
         document.querySelectorAll('.modal-overlay').forEach(m => {
-            m.addEventListener('click', function(e) {
-                if (e.target === this) this.classList.remove('active');
-            });
+            m.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('active'); });
         });
 
-        // ============ UTILITÁRIOS ============
         function showToast(msg, isError, isSuccess) {
             const toast = document.getElementById('toast');
             toast.textContent = msg;
@@ -862,7 +848,6 @@
             toast._timeout = setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // ============ INIT ============
         async function init() {
             await loadClientes();
             await loadConfig();

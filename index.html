@@ -36,37 +36,30 @@
             padding: 50px 20px 35px;
         }
         .logo-hero {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 14px 20px;
+            display: inline-block;
+            text-align: center;
             margin-bottom: 16px;
         }
-        .logo-icon {
-            width: 44px; height: 44px;
-            background: linear-gradient(135deg, var(--blue), #1e40af);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
+        .logo-alpha {
+            font-size: 40px;
             font-weight: 900;
-        }
-        .brand {
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-align: left;
+            letter-spacing: 6px;
+            color: #fff;
             line-height: 1;
         }
-        .brand span { color: var(--gold); }
-        .sub {
-            font-size: 9px;
+        .logo-solucao {
+            font-size: 18px;
+            font-weight: 600;
             letter-spacing: 3px;
+            color: #60a5fa;
+            margin-top: 2px;
+        }
+        .logo-tagline {
+            font-size: 9px;
+            letter-spacing: 4px;
             color: rgba(255,255,255,0.5);
+            margin-top: 4px;
+            text-transform: uppercase;
         }
         .hero h1 { font-size: 24px; margin: 12px 0 6px; }
         .hero p { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 20px; }
@@ -94,7 +87,6 @@
             border: 1px solid rgba(255,255,255,0.3);
             color: #fff;
         }
-        .btn-primary { background: var(--blue); color: #fff; }
         .btn-whatsapp {
             background: #25D366;
             color: #fff;
@@ -181,8 +173,23 @@
             padding: 24px 16px;
             font-size: 12px;
         }
-        footer .brand { font-size: 16px; font-weight: 700; letter-spacing: 2px; }
-        footer .brand span { color: var(--gold); }
+        footer .logo-footer {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            margin-bottom: 2px;
+        }
+        footer .logo-footer-sub {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #60a5fa;
+        }
+        footer .logo-footer-tagline {
+            font-size: 8px;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.4);
+        }
 
         @media (max-width: 380px) {
             .services-grid { grid-template-columns: 1fr; }
@@ -193,11 +200,9 @@
 
     <header class="hero">
         <div class="logo-hero">
-            <div class="logo-icon">A</div>
-            <div>
-                <div class="brand">ALPHA <span>CLEAN</span></div>
-                <div class="sub">Limpeza com Excelência</div>
-            </div>
+            <div class="logo-alpha">ALPHA</div>
+            <div class="logo-solucao">SOLUÇÃO CLEAN</div>
+            <div class="logo-tagline">Limpeza com Excelência</div>
         </div>
         <h1>Higienização Profissional</h1>
         <p>Sofás, colchões, cadeiras, carros e muito mais com <strong>10% de cashback</strong> em cada serviço</p>
@@ -249,8 +254,10 @@
     </section>
 
     <footer>
-        <div class="brand">ALPHA <span>CLEAN</span></div>
-        <p>Limpeza com Excelência © 2024</p>
+        <div class="logo-footer">ALPHA</div>
+        <div class="logo-footer-sub">SOLUÇÃO CLEAN</div>
+        <div class="logo-footer-tagline">LIMPEZA COM EXCELÊNCIA</div>
+        <p style="margin-top:8px;">© 2024 Todos os direitos reservados</p>
     </footer>
 
     <a href="#" class="btn-whatsapp" id="whatsappBtn" target="_blank">💬 Orçamento</a>
