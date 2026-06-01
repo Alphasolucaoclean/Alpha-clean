@@ -45,25 +45,9 @@
             box-shadow: var(--shadow);
             text-align: center;
         }
-        .logo-alpha {
-            font-size: 28px;
-            font-weight: 900;
-            letter-spacing: 4px;
-            color: var(--blue-dark);
-            line-height: 1;
-        }
-        .logo-solucao {
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            color: var(--blue);
-        }
-        .logo-tagline {
-            font-size: 8px;
-            letter-spacing: 3px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-        }
+        .logo-alpha { font-size: 28px; font-weight: 900; letter-spacing: 4px; color: var(--blue-dark); line-height: 1; }
+        .logo-solucao { font-size: 13px; font-weight: 600; letter-spacing: 2px; color: var(--blue); }
+        .logo-tagline { font-size: 8px; letter-spacing: 3px; color: var(--text-secondary); text-transform: uppercase; }
 
         .tabs {
             display: flex;
@@ -78,12 +62,12 @@
         }
         .tab {
             flex: 1;
-            padding: 10px 8px;
+            padding: 10px 6px;
             text-align: center;
             border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 11px;
+            font-size: 10px;
             transition: all .2s;
             color: var(--text-secondary);
             border: none;
@@ -218,27 +202,17 @@
             margin-bottom: 10px;
             position: relative;
         }
-        .oferta-card.destaque {
-            border-color: var(--gold);
-            background: var(--gold-bg);
-        }
+        .oferta-card.destaque { border-color: var(--gold); background: var(--gold-bg); }
         .oferta-card .oferta-titulo { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
         .oferta-card .oferta-desc { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
         .oferta-card .oferta-preco { font-size: 20px; font-weight: 700; color: var(--green); }
         .oferta-card .oferta-badge {
-            position: absolute;
-            top: -8px;
-            right: 12px;
-            background: var(--red);
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 9px;
-            font-weight: 700;
+            position: absolute; top: -8px; right: 12px;
+            background: var(--red); color: #fff;
+            padding: 2px 8px; border-radius: 10px;
+            font-size: 9px; font-weight: 700;
         }
-        .stars-display { color: var(--gold); font-size: 16px; letter-spacing: 2px; }
 
-        /* Depoimentos no admin */
         .depoimento-item {
             background: var(--card);
             border: 1px solid var(--border);
@@ -318,7 +292,7 @@
         .toast.success { background: var(--green); }
 
         @media (max-width: 400px) {
-            .tab { font-size: 10px; padding: 8px 4px; }
+            .tab { font-size: 9px; padding: 8px 4px; }
         }
     </style>
 </head>
@@ -333,11 +307,12 @@
         </div>
 
         <div class="tabs">
-            <button class="tab active" onclick="switchTab('clients')">👥 Clientes</button>
-            <button class="tab" onclick="switchTab('register')">📝 Serviço</button>
-            <button class="tab" onclick="switchTab('offers')">🎯 Ofertas</button>
-            <button class="tab" onclick="switchTab('depoimentos')">⭐ Depoimentos</button>
-            <button class="tab" onclick="switchTab('config')">⚙️ Config</button>
+            <button class="tab active" onclick="switchTab('clients')">👥</button>
+            <button class="tab" onclick="switchTab('register')">📝</button>
+            <button class="tab" onclick="switchTab('offers')">🎯</button>
+            <button class="tab" onclick="switchTab('depoimentos')">⭐</button>
+            <button class="tab" onclick="switchTab('checklist')">📋</button>
+            <button class="tab" onclick="switchTab('config')">⚙️</button>
         </div>
 
         <div id="tab-clients">
@@ -390,8 +365,34 @@
 
         <div id="tab-depoimentos" class="hidden">
             <div class="card">
-                <div class="card-title">⭐ Depoimentos de Clientes</div>
+                <div class="card-title">⭐ Depoimentos</div>
                 <div id="depoimentosList"><div class="empty-state">Nenhum depoimento ainda</div></div>
+            </div>
+        </div>
+
+        <div id="tab-checklist" class="hidden">
+            <div class="card">
+                <div class="card-title">📋 Checklist de Serviço</div>
+                <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;">
+                    Preencha ao final de cada atendimento. Fotos salvas automaticamente.
+                </p>
+                <a href="checklist.html" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;text-decoration:none;margin-bottom:10px;">
+                    📝 Abrir Checklist
+                </a>
+                <a href="https://docs.google.com/spreadsheets/d/1a2CXDRC9N6IdAVKUgX3mMRHPwkSf2cUJC6yf5QSMEjo/edit?usp=drivesdk" target="_blank" class="btn btn-outline" style="display:flex;align-items:center;gap:8px;text-decoration:none;margin-bottom:10px;">
+                    📊 Ver Planilha
+                </a>
+                <a href="https://calendar.google.com" target="_blank" class="btn btn-outline" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
+                    📅 Google Agenda
+                </a>
+            </div>
+            <div class="card">
+                <div class="card-title">💡 Dicas</div>
+                <div style="font-size:12px;color:var(--text-secondary);line-height:2;">
+                    <p>📸 Fotos: Tire antes/depois no checklist</p>
+                    <p>📅 Agenda: Sempre +30min extra</p>
+                    <p>🔁 Recorrência: Duplique evento para 5 meses</p>
+                </div>
             </div>
         </div>
 
@@ -415,14 +416,8 @@
     <div class="modal-overlay" id="newClientModal">
         <div class="modal">
             <h3>✨ Novo Cliente</h3>
-            <div class="form-group">
-                <label>Nome</label>
-                <input type="text" id="newName" placeholder="Nome completo">
-            </div>
-            <div class="form-group">
-                <label>WhatsApp</label>
-                <input type="text" id="newPhone" placeholder="(XX) XXXXX-XXXX">
-            </div>
+            <div class="form-group"><label>Nome</label><input type="text" id="newName" placeholder="Nome completo"></div>
+            <div class="form-group"><label>WhatsApp</label><input type="text" id="newPhone" placeholder="(XX) XXXXX-XXXX"></div>
             <div class="modal-buttons">
                 <button class="btn btn-outline" onclick="closeNewClientModal()">Cancelar</button>
                 <button class="btn btn-primary" onclick="addClient()">Salvar</button>
@@ -434,7 +429,7 @@
     <div class="modal-overlay" id="confirmRemoveModal">
         <div class="modal">
             <h3>🗑️ Remover Cliente?</h3>
-            <p style="font-size:14px;color:var(--text-secondary);">Remover <strong id="removeClientName"></strong>? O histórico será perdido.</p>
+            <p style="font-size:14px;color:var(--text-secondary);">Remover <strong id="removeClientName"></strong>?</p>
             <input type="hidden" id="removeClientId">
             <div class="modal-buttons">
                 <button class="btn btn-outline" onclick="closeConfirmRemove()">Cancelar</button>
@@ -471,7 +466,7 @@
             <div class="form-group"><label>Título</label><input type="text" id="ofertaTitulo" placeholder="Super Promoção!"></div>
             <div class="form-group"><label>Descrição</label><textarea id="ofertaDesc" placeholder="Detalhes..."></textarea></div>
             <div class="form-group"><label>Preço (R$)</label><input type="number" id="ofertaPreco" placeholder="129,90" step="0.01"></div>
-            <div class="form-group"><label>Preço original (opcional)</label><input type="number" id="ofertaPrecoOriginal" placeholder="199,90" step="0.01"></div>
+            <div class="form-group"><label>Preço original</label><input type="number" id="ofertaPrecoOriginal" placeholder="199,90" step="0.01"></div>
             <div class="form-group"><label><input type="checkbox" id="ofertaDestaque" style="width:auto;"> ⭐ Destacar</label></div>
             <div class="form-group"><label>Válido até</label><input type="date" id="ofertaValidade"></div>
             <div class="modal-buttons">
@@ -488,7 +483,6 @@
         const CLIENTES_BIN_ID = '69f51701aaba8821975ec0e9';
         const OFERTAS_BIN_ID = '69f5173436566621a814f088';
         const CONFIG_BIN_ID = '69f51754856a68218996c653';
-        const DEPOIMENTOS_BIN_ID = '69f51754856a68218996c653'; // mesmo bin do config, campo depoimentos
 
         let currentTab = 'clients';
         let clientesCache = [];
@@ -552,7 +546,7 @@
 
         function switchTab(tab) {
             currentTab = tab;
-            const tabs = ['clients','register','offers','depoimentos','config'];
+            const tabs = ['clients','register','offers','depoimentos','checklist','config'];
             document.querySelectorAll('.tab').forEach((t, i) => {
                 t.classList.toggle('active', i === tabs.indexOf(tab));
             });
@@ -796,7 +790,7 @@
         function renderDepoimentosList() {
             const list = document.getElementById('depoimentosList');
             if (depoimentosCache.length === 0) {
-                list.innerHTML = '<div class="empty-state">Nenhum depoimento ainda. Os clientes avaliam após o serviço.</div>';
+                list.innerHTML = '<div class="empty-state">Nenhum depoimento ainda</div>';
                 return;
             }
             list.innerHTML = depoimentosCache.map((d, i) => `
@@ -804,7 +798,7 @@
                     <div class="stars">${'⭐'.repeat(d.estrelas)}</div>
                     <div class="texto">"${d.texto}"</div>
                     <div class="autor">— ${d.autor} • ${new Date(d.data).toLocaleDateString('pt-BR')}</div>
-                    <button class="btn btn-danger btn-xs" style="margin-top:4px;" onclick="removerDepoimento(${i})">🗑️ Remover</button>
+                    <button class="btn btn-danger btn-xs" style="margin-top:4px;" onclick="removerDepoimento(${i})">🗑️</button>
                 </div>
             `).join('');
         }
