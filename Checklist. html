@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Solução Clean - Checklist</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Checklist Alpha">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>📋</text></svg>">
+    <style>
+        :root {
+            --blue-dark: #1e40af;
+            --blue: #2563eb;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --text-secondary: #64748b;
+            --shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .logo-alpha { font-size: 22px; font-weight: 900; letter-spacing: 3px; color: var(--blue-dark); }
+        .logo-solucao { font-size: 11px; font-weight: 600; letter-spacing: 2px; color: var(--blue); }
+        .logo-tagline { font-size: 7px; letter-spacing: 2px; color: var(--text-secondary); text-transform: uppercase; }
+
+        .nav-links {
+            display: flex;
+            gap: 6px;
+            padding: 8px 12px;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+        }
+        .nav-link {
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            background: var(--card);
+        }
+        .nav-link.voltar { background: var(--blue); color: #fff; border-color: var(--blue); }
+        .nav-link.planilha { background: #16a34a; color: #fff; border-color: #16a34a; }
+
+        iframe {
+            width: 100%;
+            flex: 1;
+            border: none;
+            min-height: 85vh;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 10px;
+            color: var(--text-secondary);
+            background: var(--card);
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-alpha">ALPHA</div>
+        <div class="logo-solucao">SOLUÇÃO CLEAN</div>
+        <div class="logo-tagline">Checklist de Serviço</div>
+    </div>
+
+    <div class="nav-links">
+        <a href="admin.html" class="nav-link voltar">⬅ Painel</a>
+        <a href="https://docs.google.com/spreadsheets/d/1a2CXDRC9N6IdAVKUgX3mMRHPwkSf2cUJC6yf5QSMEjo/edit?usp=drivesdk" target="_blank" class="nav-link planilha">📊 Planilha</a>
+        <a href="https://calendar.google.com" target="_blank" class="nav-link">📅 Agenda</a>
+    </div>
+
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdy8ZMtkVCzz-db3rKSkYcN7uu_9wfx_ujvOZm4nETg9jv0Tw/viewform?embedded=true"></iframe>
+
+    <div class="footer">
+        💡 Adicione à tela inicial: ⋮ > Adicionar à tela | Alpha Solução Clean
+    </div>
+</body>
+</html>
