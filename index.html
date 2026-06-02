@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alpha Solução Clean - Higienização Profissional</title>
-    <meta name="description" content="Alpha Solução Clean - Higienização de sofás, colchões, cadeiras, interior de carro e lavagem ecológica. 10% de cashback.">
+    <meta name="description" content="Alpha Solução Clean - Higienização de sofás, colchões, cadeiras, interior de carro e lavagem ecológica. 10% de cashback. Zona Oeste - RJ.">
     <meta http-equiv="Content-Language" content="pt-BR">
     <style>
         :root {
@@ -26,7 +26,6 @@
             --text-muted: #94a3b8;
             --shadow: 0 1px 3px rgba(0,0,0,0.06);
             --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-            --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,7 +38,6 @@
             min-height: 100vh;
         }
 
-        /* NAVBAR */
         .navbar {
             background: #ffffff;
             border-bottom: 1px solid var(--border);
@@ -77,11 +75,9 @@
         .nav-links button:hover { border-color: var(--blue); color: var(--blue); }
         .nav-links button.active { background: var(--blue); color: #fff; border-color: var(--blue); }
 
-        /* PÁGINAS */
         .page { display: none; }
         .page.active { display: block; }
 
-        /* HERO */
         .hero {
             background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
             color: #fff;
@@ -99,7 +95,6 @@
         .section-title { text-align: center; font-size: 20px; font-weight: 700; margin-bottom: 6px; color: var(--blue-dark); }
         .section-subtitle { text-align: center; font-size: 13px; color: var(--text-secondary); margin-bottom: 24px; }
 
-        /* CARDS */
         .card {
             background: var(--card);
             border: 1px solid var(--border);
@@ -117,7 +112,6 @@
             font-weight: 700;
         }
 
-        /* SERVIÇOS */
         .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .service-card {
             background: var(--card);
@@ -134,7 +128,6 @@
         .service-card .icon { font-size: 32px; margin-bottom: 6px; }
         .service-card h3 { font-size: 12px; font-weight: 600; }
 
-        /* CASHBACK */
         .cashback-box {
             background: var(--gold-bg);
             border: 1px solid rgba(201,168,76,0.3);
@@ -146,14 +139,12 @@
         .cashback-box h3 { font-size: 16px; margin: 4px 0; color: #8b6914; }
         .cashback-box p { font-size: 12px; color: var(--text-secondary); }
 
-        /* DIFERENCIAIS */
         .dif-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; text-align: center; }
         .dif-item { padding: 14px 6px; }
         .dif-item .icon { font-size: 24px; margin-bottom: 4px; }
         .dif-item h4 { font-size: 11px; font-weight: 700; }
         .dif-item p { font-size: 9px; color: var(--text-secondary); }
 
-        /* FORM */
         .form-group { margin-bottom: 12px; }
         label {
             display: block;
@@ -176,7 +167,6 @@
         }
         textarea { resize: vertical; min-height: 60px; }
 
-        /* BOTÕES */
         .btn {
             padding: 12px 20px;
             border-radius: 10px;
@@ -250,7 +240,6 @@
 </head>
 <body>
 
-    <!-- NAVBAR -->
     <nav class="navbar">
         <a href="#" class="nav-brand" onclick="navegar('home')">ALPHA <span>CLEAN</span></a>
         <div class="nav-links">
@@ -262,14 +251,14 @@
         </div>
     </nav>
 
-    <!-- ==================== PÁGINA HOME ==================== -->
+    <!-- HOME -->
     <div class="page active" id="page-home">
         <header class="hero">
             <div class="logo-alpha">ALPHA</div>
             <div class="logo-solucao">SOLUÇÃO CLEAN</div>
             <div class="logo-tagline">Limpeza com Excelência</div>
             <h1>Higienização que Transforma Ambientes</h1>
-            <p>Seu sofá, colchão e carro limpos com tecnologia profissional e <strong>10% de cashback</strong></p>
+            <p>Seu sofá, colchão e carro limpos com tecnologia profissional e <strong>10% de cashback</strong><br>📍 <strong>Zona Oeste do Rio de Janeiro</strong></p>
             <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
                 <button class="btn btn-gold" onclick="navegar('orcamento')">📋 Solicitar Orçamento</button>
                 <button class="btn btn-outline" style="background:transparent;border:1px solid rgba(255,255,255,0.3);color:#fff;" onclick="navegar('captura')">🎁 Quero Cashback</button>
@@ -325,17 +314,15 @@
         <footer>
             <div class="logo-alpha">ALPHA</div>
             <div class="logo-solucao">SOLUÇÃO CLEAN</div>
-            <p>© 2024 Alpha Solução Clean - Limpeza com Excelência</p>
-            <p style="margin-top:4px;">
-                <a href="admin.html" style="color:rgba(255,255,255,0.2);font-size:9px;">Admin</a>
-            </p>
+            <p>© 2024 Alpha Solução Clean - Limpeza com Excelência<br>📍 Zona Oeste - Rio de Janeiro</p>
+            <p style="margin-top:4px;"><a href="admin.html" style="color:rgba(255,255,255,0.2);font-size:9px;">Admin</a></p>
         </footer>
     </div>
 
-    <!-- ==================== PÁGINA ORÇAMENTO ==================== -->
+    <!-- ORÇAMENTO -->
     <div class="page" id="page-orcamento">
         <div class="container section">
-            <div class="header-logo text-center mb-16">
+            <div class="text-center mb-16">
                 <div style="font-size:28px;font-weight:900;letter-spacing:4px;color:var(--blue-dark);">ALPHA</div>
                 <div style="font-size:13px;font-weight:600;letter-spacing:2px;color:var(--blue);">SOLUÇÃO CLEAN</div>
                 <p style="font-size:11px;color:var(--text-secondary);">Orçamento em até 10 minutos!</p>
@@ -359,8 +346,25 @@
                     <input type="text" id="nomeOrcamento" placeholder="Nome completo">
                 </div>
                 <div class="form-group">
-                    <label>Bairro e Cidade</label>
-                    <input type="text" id="enderecoOrcamento" placeholder="Bairro, Cidade">
+                    <label>Bairro (Zona Oeste - RJ)</label>
+                    <select id="enderecoOrcamento">
+                        <option value="">Selecione seu bairro...</option>
+                        <option value="Bangu">Bangu</option>
+                        <option value="Campo Grande">Campo Grande</option>
+                        <option value="Cosmos">Cosmos</option>
+                        <option value="Guaratiba">Guaratiba</option>
+                        <option value="Inhoaíba">Inhoaíba</option>
+                        <option value="Paciência">Paciência</option>
+                        <option value="Realengo">Realengo</option>
+                        <option value="Santa Cruz">Santa Cruz</option>
+                        <option value="Santíssimo">Santíssimo</option>
+                        <option value="Senador Camará">Senador Camará</option>
+                        <option value="Senador Vasconcelos">Senador Vasconcelos</option>
+                        <option value="Sepetiba">Sepetiba</option>
+                        <option value="Vila Kennedy">Vila Kennedy</option>
+                        <option value="Outro">Outro (especificar)</option>
+                    </select>
+                    <input type="text" id="outroBairro" placeholder="Digite seu bairro..." style="display:none;margin-top:6px;">
                 </div>
                 <div class="form-group">
                     <label>Observações</label>
@@ -377,17 +381,16 @@
         </div>
     </div>
 
-    <!-- ==================== PÁGINA CAPTURA ==================== -->
+    <!-- CAPTURA -->
     <div class="page" id="page-captura">
         <div class="container section">
             <div class="card text-center" style="background:linear-gradient(135deg, var(--blue-dark), var(--blue));color:#fff;">
                 <div style="font-size:28px;font-weight:900;letter-spacing:4px;">ALPHA</div>
                 <div style="font-size:13px;font-weight:600;letter-spacing:2px;color:rgba(255,255,255,0.8);">SOLUÇÃO CLEAN</div>
-                <div class="badge" style="display:inline-block;background:var(--gold);color:#1a1a1a;padding:6px 16px;border-radius:20px;font-weight:700;margin:16px 0;">🎁 10% DE CASHBACK</div>
+                <div style="display:inline-block;background:var(--gold);color:#1a1a1a;padding:6px 16px;border-radius:20px;font-weight:700;margin:16px 0;">🎁 10% DE CASHBACK</div>
                 <h2 style="margin:8px 0;">Ganhe dinheiro de volta!</h2>
                 <p style="color:rgba(255,255,255,0.8);font-size:13px;">A cada serviço, <strong>10% do valor</strong> volta como saldo</p>
             </div>
-
             <div class="card">
                 <ul style="list-style:none;font-size:13px;line-height:2.2;">
                     <li>✅ Cashback vitalício em todos os serviços</li>
@@ -402,7 +405,7 @@
         </div>
     </div>
 
-    <!-- ==================== PÁGINA BLOG ==================== -->
+    <!-- BLOG -->
     <div class="page" id="page-blog">
         <div class="container section">
             <div class="text-center mb-16">
@@ -410,9 +413,8 @@
                 <div style="font-size:13px;font-weight:600;letter-spacing:2px;color:var(--blue);">SOLUÇÃO CLEAN</div>
                 <p style="font-size:11px;color:var(--text-secondary);">Dicas de Limpeza Profissional</p>
             </div>
-
             <div class="card">
-                <div class="icon" style="font-size:32px;">🛋️</div>
+                <div style="font-size:32px;">🛋️</div>
                 <h2 style="font-size:16px;color:var(--blue-dark);margin-bottom:8px;">Como conservar seu sofá</h2>
                 <p style="font-size:12px;color:var(--text-secondary);line-height:1.8;">
                     1. Aspire semanalmente com escova macia<br>
@@ -423,9 +425,8 @@
                     <strong>Dica Alpha:</strong> Manchas? Não esfregue! Pressione com pano branco úmido.
                 </p>
             </div>
-
             <div class="card">
-                <div class="icon" style="font-size:32px;">🛏️</div>
+                <div style="font-size:32px;">🛏️</div>
                 <h2 style="font-size:16px;color:var(--blue-dark);margin-bottom:8px;">Colchão limpo = sono saudável</h2>
                 <p style="font-size:12px;color:var(--text-secondary);line-height:1.8;">
                     1. Troque a roupa de cama toda semana<br>
@@ -436,9 +437,8 @@
                     <strong>Sabia?</strong> Um colchão acumula até 2kg de ácaros em 2 anos!
                 </p>
             </div>
-
             <div class="card">
-                <div class="icon" style="font-size:32px;">🚗</div>
+                <div style="font-size:32px;">🚗</div>
                 <h2 style="font-size:16px;color:var(--blue-dark);margin-bottom:8px;">Carro sempre novo</h2>
                 <p style="font-size:12px;color:var(--text-secondary);line-height:1.8;">
                     1. Aspire tapetes e bancos toda semana<br>
@@ -449,9 +449,8 @@
                     <strong>Economia:</strong> Carro limpo vale mais na revenda!
                 </p>
             </div>
-
             <div class="card">
-                <div class="icon" style="font-size:32px;">🌿</div>
+                <div style="font-size:32px;">🌿</div>
                 <h2 style="font-size:16px;color:var(--blue-dark);margin-bottom:8px;">Lavagem Ecológica</h2>
                 <p style="font-size:12px;color:var(--text-secondary);line-height:1.8;">
                     1. Economiza até 300L de água<br>
@@ -464,7 +463,7 @@
         </div>
     </div>
 
-    <!-- ==================== PÁGINA CLIENTE ==================== -->
+    <!-- CLIENTE -->
     <div class="page" id="page-cliente">
         <div class="container section">
             <div class="text-center mb-16">
@@ -472,7 +471,6 @@
                 <div style="font-size:13px;font-weight:600;letter-spacing:2px;color:var(--blue);">SOLUÇÃO CLEAN</div>
                 <p style="font-size:11px;color:var(--text-secondary);">Área do Cliente</p>
             </div>
-
             <div class="card text-center" id="loginCard">
                 <h3 style="color:var(--blue-dark);margin-bottom:4px;">🔐 Acesse seu Cashback</h3>
                 <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;">Digite o código de acesso</p>
@@ -482,32 +480,26 @@
                 <button class="btn btn-primary btn-full" onclick="loginCliente()">✨ Entrar</button>
                 <p style="font-size:10px;color:var(--text-muted);margin-top:10px;">Código enviado pelo WhatsApp</p>
             </div>
-
             <div id="clienteLogado" style="display:none;">
                 <div class="card text-center" style="background:var(--gold-bg);border:1px solid rgba(201,168,76,0.3);">
                     <div style="font-size:44px;font-weight:900;color:#b8860b;" id="saldoCliente">R$ 0,00</div>
                     <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#8b6914;font-weight:600;">Saldo Cashback <span style="background:var(--gold);color:#fff;padding:2px 8px;border-radius:10px;font-size:9px;">10%</span></div>
                 </div>
-
                 <div class="card">
                     <div class="card-title">📋 Histórico</div>
                     <div id="historicoCliente"><p style="text-align:center;color:var(--text-muted);font-size:13px;">Nenhuma transação</p></div>
                 </div>
-
                 <button class="btn btn-outline btn-full mt-10" onclick="logoutCliente()">🔒 Sair</button>
             </div>
-
             <p style="text-align:center;font-size:10px;color:var(--text-muted);margin-top:16px;">
                 <a href="admin.html" style="color:var(--text-muted);">Painel Admin</a>
             </p>
         </div>
     </div>
 
-    <!-- WhatsApp Flutuante -->
     <a href="#" class="whatsapp-float" id="whatsappFloat" target="_blank">💬 Orçamento</a>
 
     <script>
-        // ============ CONFIG ============
         const API_KEY = '$2a$10$4L9JW3FJilcxJxYzakIlaeAKtcCqrLoQWP4mGAmN81OaT3ih4M9Ey';
         const CLIENTES_BIN_ID = '69f51701aaba8821975ec0e9';
         const CONFIG_BIN_ID = '69f51754856a68218996c653';
@@ -515,7 +507,6 @@
         let servicosOrcamento = [];
         let clienteLogadoData = null;
 
-        // ============ NAVEGAÇÃO ============
         function navegar(pagina) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page-' + pagina).classList.add('active');
@@ -547,24 +538,33 @@
             }
         }
 
-        // ============ ORÇAMENTO ============
+        // Campo "Outro" bairro
+        document.addEventListener('change', function(e) {
+            if (e.target.id === 'enderecoOrcamento') {
+                document.getElementById('outroBairro').style.display = 
+                    e.target.value === 'Outro' ? '' : 'none';
+            }
+        });
+
         async function enviarOrcamento() {
             if (servicosOrcamento.length === 0) { alert('Selecione pelo menos um serviço'); return; }
             const nome = document.getElementById('nomeOrcamento').value.trim();
-            const endereco = document.getElementById('enderecoOrcamento').value.trim();
+            let endereco = document.getElementById('enderecoOrcamento').value;
+            if (endereco === 'Outro') {
+                endereco = document.getElementById('outroBairro').value.trim();
+                if (!endereco) { alert('Informe seu bairro'); return; }
+            }
             if (!nome) { alert('Informe seu nome'); return; }
-            if (!endereco) { alert('Informe bairro e cidade'); return; }
-
+            if (!endereco) { alert('Selecione um bairro'); return; }
             const qtd = document.getElementById('qtdOrcamento').value || 1;
             const obs = document.getElementById('obsOrcamento').value.trim();
             let msg = `Olá! Gostaria de solicitar um orçamento:%0A%0A`;
             msg += `📋 Serviço: ${servicosOrcamento.join(' + ')}%0A`;
             msg += `🔢 Quantidade: ${qtd}%0A`;
             msg += `👤 Nome: ${nome}%0A`;
-            msg += `📍 Endereço: ${endereco}%0A`;
+            msg += `📍 Bairro: ${endereco}%0A`;
             if (obs) msg += `📝 Obs: ${obs}%0A`;
             msg += `%0A Aguardo seu retorno! 🧹✨`;
-
             await abrirWhatsApp(msg);
         }
 
@@ -572,36 +572,33 @@
             const msg = `Olá! Quero participar do programa de cashback da Alpha Solução Clean! 🎁`;
             await abrirWhatsApp(msg);
         }
-        async function abrirWhatsApp(msg) {
-    try {
-        const resp = await fetch(`https://api.jsonbin.io/v3/b/${CONFIG_BIN_ID}/latest`, {
-            headers: { 'X-Master-Key': API_KEY }
-        });
-        const data = await resp.json();
-        const config = data.record;
-        let numero = '21990579655'; // Fallback
-        if (config.telefoneEmpresa) {
-            numero = config.telefoneEmpresa.replace(/\D/g, '');
-        }
-        // Usa API do WhatsApp (funciona em qualquer dispositivo)
-        const url = `https://api.whatsapp.com/send?phone=55${numero}&text=${msg}`;
-        window.open(url, '_blank');
-    } catch(e) {
-        window.open(`https://api.whatsapp.com/send?phone=5521999999999&text=${msg}`, '_blank');
-    }
-}
 
-        // ============ CLIENTE ============
+        async function abrirWhatsApp(msg) {
+            try {
+                const resp = await fetch(`https://api.jsonbin.io/v3/b/${CONFIG_BIN_ID}/latest`, {
+                    headers: { 'X-Master-Key': API_KEY }
+                });
+                const data = await resp.json();
+                const config = data.record;
+                let numero = '21990579655';
+                if (config.telefoneEmpresa) {
+                    numero = config.telefoneEmpresa.replace(/\D/g, '');
+                }
+                const url = `https://api.whatsapp.com/send?phone=55${numero}&text=${msg}`;
+                window.open(url, '_blank');
+            } catch(e) {
+                window.open(`https://api.whatsapp.com/send?phone=5521990579655&text=${msg}`, '_blank');
+            }
+        }
+
         async function loginCliente() {
             const codigo = document.getElementById('codigoAcesso').value.trim();
             if (!codigo) return;
-
             const resp = await fetch(`https://api.jsonbin.io/v3/b/${CLIENTES_BIN_ID}/latest`, {
                 headers: { 'X-Master-Key': API_KEY }
             });
             const data = await resp.json();
             const cliente = data.record.find(c => c.codigoAcesso === codigo && c.nome !== 'Cliente Exemplo');
-
             if (cliente) {
                 clienteLogadoData = cliente;
                 document.getElementById('loginCard').style.display = 'none';
@@ -640,7 +637,6 @@
             document.getElementById('codigoAcesso').value = '';
         }
 
-        // ============ WHATSAPP FLOAT ============
         async function initWhatsAppFloat() {
             try {
                 const resp = await fetch(`https://api.jsonbin.io/v3/b/${CONFIG_BIN_ID}/latest`, {
@@ -648,10 +644,11 @@
                 });
                 const data = await resp.json();
                 const config = data.record;
+                let numero = '21990579655';
                 if (config.telefoneEmpresa) {
-                    const num = config.telefoneEmpresa.replace(/\D/g, '');
-                    document.getElementById('whatsappFloat').href = `https://wa.me/55${num}?text=Olá!%20Gostaria%20de%20um%20orçamento.`;
+                    numero = config.telefoneEmpresa.replace(/\D/g, '');
                 }
+                document.getElementById('whatsappFloat').href = `https://api.whatsapp.com/send?phone=55${numero}&text=Olá!%20Gostaria%20de%20um%20orçamento.`;
             } catch(e) {}
         }
 
