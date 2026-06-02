@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Solução Clean - Checklist</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+        .logo-alpha { font-size: 22px; font-weight: 900; letter-spacing: 3px; color: #1e40af; }
+        .logo-solucao { font-size: 11px; font-weight: 600; letter-spacing: 2px; color: #2563eb; }
+        .logo-tagline { font-size: 7px; letter-spacing: 2px; color: #64748b; text-transform: uppercase; }
+        .nav-links {
+            display: flex; gap: 6px; padding: 8px 12px;
+            background: #fff; border-bottom: 1px solid #e2e8f0;
+            overflow-x: auto;
+        }
+        .nav-link {
+            padding: 8px 12px; border-radius: 20px; font-size: 11px;
+            font-weight: 600; text-decoration: none; white-space: nowrap;
+            border: 1px solid #e2e8f0; color: #64748b; background: #fff;
+        }
+        .nav-link.voltar { background: #2563eb; color: #fff; border-color: #2563eb; }
+        .nav-link.planilha { background: #16a34a; color: #fff; border-color: #16a34a; }
+        iframe { width: 100%; flex: 1; border: none; min-height: 85vh; }
+        .footer { text-align: center; padding: 10px; font-size: 10px; color: #64748b; background: #fff; border-top: 1px solid #e2e8f0; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-alpha">ALPHA</div>
+        <div class="logo-solucao">SOLUÇÃO CLEAN</div>
+        <div class="logo-tagline">Checklist de Serviço</div>
+    </div>
+    <div class="nav-links">
+        <a href="admin.html" class="nav-link voltar">⬅ Painel</a>
+        <a href="https://docs.google.com/spreadsheets/d/1a2CXDRC9N6IdAVKUgX3mMRHPwkSf2cUJC6yf5QSMEjo/edit?usp=drivesdk" target="_blank" class="nav-link planilha">📊 Planilha</a>
+        <a href="https://calendar.google.com" target="_blank" class="nav-link">📅 Agenda</a>
+    </div>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdy8ZMtkVCzz-db3rKSkYcN7uu_9wfx_ujvOZm4nETg9jv0Tw/viewform?embedded=true"></iframe>
+    <div class="footer">
+        💡 Adicione à tela inicial: ⋮ > Adicionar à tela | Alpha Solução Clean
+    </div>
+</body>
+</html>
