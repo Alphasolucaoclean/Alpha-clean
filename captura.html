@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganhe 10% de Cashback - Alpha Solução Clean</title>
+    <style>
+        :root {
+            --gold: #c9a84c;
+            --blue: #2563eb;
+            --blue-dark: #1e40af;
+            --green: #16a34a;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: #fff;
+            color: var(--text);
+            border-radius: 20px;
+            padding: 30px 24px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .logo-alpha { font-size: 28px; font-weight: 900; letter-spacing: 4px; color: var(--blue-dark); }
+        .logo-solucao { font-size: 13px; font-weight: 600; letter-spacing: 2px; color: var(--blue); }
+        .badge {
+            display: inline-block;
+            background: var(--gold);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin: 16px 0;
+        }
+        h2 { font-size: 20px; margin: 8px 0; color: var(--blue-dark); }
+        p { font-size: 13px; color: var(--text-secondary); margin-bottom: 16px; }
+        .benefits {
+            text-align: left;
+            margin: 16px 0;
+            padding: 0;
+            list-style: none;
+        }
+        .benefits li {
+            padding: 8px 0;
+            font-size: 13px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .benefits li:before { content: '✅ '; }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: all .2s;
+        }
+        .btn-whatsapp { background: #25D366; color: #fff; }
+        .btn-outline { background: #fff; color: var(--blue); border: 1px solid var(--blue); }
+        .btn-voltar { background: transparent; color: var(--text-secondary); font-size: 12px; margin-top: 20px; display: inline-block; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo-alpha">ALPHA</div>
+        <div class="logo-solucao">SOLUÇÃO CLEAN</div>
+        <div class="badge">🎁 10% DE CASHBACK</div>
+        <h2>Ganhe dinheiro de volta a cada limpeza!</h2>
+        <p>A cada serviço realizado, <strong>10% do valor</strong> volta como saldo para você usar no próximo agendamento.</p>
+        
+        <ul class="benefits">
+            <li>Cashback vitalício em todos os serviços</li>
+            <li>Saldo disponível 24h após o serviço</li>
+            <li>Acompanhe pelo portal do cliente</li>
+            <li>Use como desconto ou acumule</li>
+            <li>Indique amigos e ganhe bônus</li>
+        </ul>
+
+        <a href="#" class="btn btn-whatsapp" id="whatsappLink" target="_blank">💬 Quero participar - Chamar no WhatsApp</a>
+        <a href="cliente.html" class="btn btn-outline">🔐 Já sou cliente - Acessar</a>
+        <a href="index.html" class="btn-voltar">← Voltar ao site</a>
+    </div>
+
+    <script>
+        const API_KEY = '$2a$10$4L9JW3FJilcxJxYzakIlaeAKtcCqrLoQWP4mGAmN81OaT3ih4M9Ey';
+        const CONFIG_BIN_ID = '69f51754856a68218996c653';
+        async function loadWhatsApp() {
+            try {
+                const resp = await fetch(`https://api.jsonbin.io/v3/b/${CONFIG_BIN_ID}/latest`, {
+                    headers: { 'X-Master-Key': API_KEY }
+                });
+                const data = await resp.json();
+                const config = data.record;
+                if (config.telefoneEmpresa) {
+                    const num = config.telefoneEmpresa.replace(/\D/g, '');
+                    document.getElementById('whatsappLink').href = `https://wa.me/55${num}?text=Olá!%20Quero%20participar%20do%20programa%20de%20cashback%20da%20Alpha%20Solução%20Clean!`;
+                }
+            } catch(e) {}
+        }
+        loadWhatsApp();
+    </script>
+</body>
+</html>
