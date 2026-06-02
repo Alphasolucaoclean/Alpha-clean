@@ -1,170 +1,250 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta http-equiv="Content-Language" content="pt-BR">
-<html lang="pt-BR">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alpha Solução Clean - Higienização Profissional</title>
-    <meta name="description" content="Alpha Solução Clean - Higienização de sofás, colchões, cadeiras, interiores e lavagem ecológica. 10% de cashback.">
+    <meta name="description" content="Alpha Solução Clean - Higienização de sofás, colchões, cadeiras, interior de carro e lavagem ecológica. 10% de cashback.">
+    <meta http-equiv="Content-Language" content="pt-BR">
     <style>
         :root {
-            --gold: #c9a84c;
-            --gold-bg: #fef9e7;
-            --blue: #2563eb;
-            --blue-dark: #1e40af;
-            --green: #16a34a;
-            --text: #1e293b;
-            --text-secondary: #64748b;
+            --bg: #f8fafc;
             --card: #ffffff;
             --border: #e2e8f0;
-            --shadow: 0 2px 8px rgba(0,0,0,0.06);
+            --gold: #c9a84c;
+            --gold-light: #d4b85c;
+            --gold-bg: #fef9e7;
+            --blue: #2563eb;
+            --blue-light: #3b82f6;
+            --blue-bg: #eff6ff;
+            --blue-dark: #1e40af;
+            --green: #16a34a;
+            --green-bg: #f0fdf4;
+            --red: #ef4444;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --shadow: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: #f8fafc;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
             color: var(--text);
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         /* NAVBAR */
         .navbar {
-            background: #0f172a;
-            padding: 12px 16px;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            padding: 10px 16px;
             position: sticky;
             top: 0;
             z-index: 100;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            box-shadow: var(--shadow);
         }
-        .nav-logo {
-            color: #fff;
+        .nav-brand {
             font-weight: 900;
             letter-spacing: 2px;
             font-size: 16px;
+            color: var(--blue-dark);
             text-decoration: none;
         }
-        .nav-logo span { color: var(--gold); }
-        .nav-links { display: flex; gap: 6px; overflow-x: auto; }
-        .nav-links a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            font-size: 12px;
-            padding: 6px 10px;
-            border-radius: 6px;
+        .nav-brand span { color: var(--gold); }
+        .nav-links { display: flex; gap: 4px; overflow-x: auto; }
+        .nav-links button {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 7px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
             white-space: nowrap;
             transition: all .2s;
+            font-family: inherit;
         }
-        .nav-links a:hover { background: rgba(255,255,255,0.1); color: #fff; }
-        .nav-links a.destaque { background: var(--gold); color: #000; font-weight: 700; }
+        .nav-links button:hover { border-color: var(--blue); color: var(--blue); }
+        .nav-links button.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+
+        /* PÁGINAS */
+        .page { display: none; }
+        .page.active { display: block; }
 
         /* HERO */
         .hero {
             background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
             color: #fff;
             text-align: center;
-            padding: 60px 20px 50px;
+            padding: 50px 20px 40px;
         }
         .hero .logo-alpha { font-size: 42px; font-weight: 900; letter-spacing: 6px; }
-        .hero .logo-solucao { font-size: 18px; font-weight: 600; letter-spacing: 3px; color: #60a5fa; }
-        .hero .logo-tagline { font-size: 9px; letter-spacing: 4px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
-        .hero h1 { font-size: 26px; margin: 10px 0; }
-        .hero p { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 24px; max-width: 400px; margin-left: auto; margin-right: auto; }
+        .hero .logo-solucao { font-size: 16px; font-weight: 600; letter-spacing: 3px; color: #60a5fa; }
+        .hero .logo-tagline { font-size: 8px; letter-spacing: 4px; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-bottom: 16px; }
+        .hero h1 { font-size: 24px; margin: 8px 0; }
+        .hero p { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 20px; max-width: 380px; margin-left: auto; margin-right: auto; }
 
-        .btn {
-            padding: 14px 24px;
+        .container { max-width: 550px; margin: 0 auto; padding: 0 16px; }
+        .section { padding: 35px 0; }
+        .section-title { text-align: center; font-size: 20px; font-weight: 700; margin-bottom: 6px; color: var(--blue-dark); }
+        .section-subtitle { text-align: center; font-size: 13px; color: var(--text-secondary); margin-bottom: 24px; }
+
+        /* CARDS */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 14px;
+            box-shadow: var(--shadow);
+        }
+        .card-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        /* SERVIÇOS */
+        .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .service-card {
+            background: var(--card);
+            border: 1px solid var(--border);
             border-radius: 12px;
-            font-size: 15px;
+            padding: 18px 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all .3s;
+            cursor: pointer;
+        }
+        .service-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+        .service-card.selected { border-color: var(--blue); background: var(--blue-bg); }
+        .service-card .icon { font-size: 32px; margin-bottom: 6px; }
+        .service-card h3 { font-size: 12px; font-weight: 600; }
+
+        /* CASHBACK */
+        .cashback-box {
+            background: var(--gold-bg);
+            border: 1px solid rgba(201,168,76,0.3);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+        .cashback-box .percent { font-size: 52px; font-weight: 900; color: #b8860b; }
+        .cashback-box h3 { font-size: 16px; margin: 4px 0; color: #8b6914; }
+        .cashback-box p { font-size: 12px; color: var(--text-secondary); }
+
+        /* DIFERENCIAIS */
+        .dif-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; text-align: center; }
+        .dif-item { padding: 14px 6px; }
+        .dif-item .icon { font-size: 24px; margin-bottom: 4px; }
+        .dif-item h4 { font-size: 11px; font-weight: 700; }
+        .dif-item p { font-size: 9px; color: var(--text-secondary); }
+
+        /* FORM */
+        .form-group { margin-bottom: 12px; }
+        label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        input, select, textarea {
+            width: 100%;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        textarea { resize: vertical; min-height: 60px; }
+
+        /* BOTÕES */
+        .btn {
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
+            border: none;
+            transition: all .2s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            border: none;
-            transition: all .3s;
+            font-family: inherit;
         }
-        .btn-gold { background: var(--gold); color: #1a1a1a; box-shadow: 0 4px 15px rgba(201,168,76,0.4); }
-        .btn-gold:hover { background: #d4b85c; transform: translateY(-2px); }
-        .btn-outline-light { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff; }
-        .btn-primary { background: var(--blue); color: #fff; box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
-        .btn-primary:hover { background: #3b82f6; transform: translateY(-2px); }
-        .btn-whatsapp {
-            background: #25D366; color: #fff;
-            position: fixed; bottom: 20px; right: 20px; z-index: 50;
-            border-radius: 50px; padding: 12px 20px;
+        .btn-primary { background: var(--blue); color: #fff; }
+        .btn-primary:hover { background: var(--blue-light); }
+        .btn-gold { background: var(--gold); color: #1a1a1a; }
+        .btn-gold:hover { background: var(--gold-light); }
+        .btn-outline { background: var(--card); border: 1px solid var(--border); color: var(--text); }
+        .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+        .btn-whatsp { background: #25D366; color: #fff; }
+        .btn-whatsp:hover { background: #1ebe5d; }
+        .btn-full { width: 100%; justify-content: center; }
+        .btn-sm { padding: 8px 14px; font-size: 12px; }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 50;
+            background: #25D366;
+            color: #fff;
+            border-radius: 50px;
+            padding: 12px 20px;
             box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-            animation: pulse 2s infinite; text-decoration: none;
-            font-weight: 600; font-size: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            animation: pulse 2s infinite;
         }
         @keyframes pulse {
             0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
             50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); }
         }
 
-        .container { max-width: 600px; margin: 0 auto; padding: 0 16px; }
-        .section { padding: 45px 0; }
-        .section-title {
-            text-align: center; font-size: 22px; font-weight: 700;
-            margin-bottom: 8px; color: var(--blue-dark);
-        }
-        .section-subtitle {
-            text-align: center; font-size: 13px; color: var(--text-secondary); margin-bottom: 28px;
-        }
+        .text-center { text-align: center; }
+        .mt-10 { margin-top: 10px; }
+        .mt-16 { margin-top: 16px; }
+        .mb-10 { margin-bottom: 10px; }
+        .mb-16 { margin-bottom: 16px; }
 
-        /* SERVIÇOS */
-        .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .service-card {
-            background: var(--card); border: 1px solid var(--border);
-            border-radius: 14px; padding: 20px 14px; text-align: center;
-            box-shadow: var(--shadow); transition: all .3s; cursor: pointer;
-        }
-        .service-card:hover { border-color: var(--blue); transform: translateY(-3px); }
-        .service-card .icon { font-size: 36px; margin-bottom: 8px; }
-        .service-card h3 { font-size: 13px; font-weight: 600; }
-
-        /* CASHBACK */
-        .cashback-box {
-            background: var(--gold-bg); border: 1px solid rgba(201,168,76,0.3);
-            border-radius: 16px; padding: 28px; text-align: center;
-        }
-        .cashback-box .percent { font-size: 56px; font-weight: 900; color: #b8860b; }
-        .cashback-box h3 { font-size: 18px; margin: 6px 0; color: #8b6914; }
-        .cashback-box p { font-size: 13px; color: var(--text-secondary); }
-
-        /* DIFERENCIAIS */
-        .dif-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; text-align: center; }
-        .dif-item { padding: 16px 8px; }
-        .dif-item .icon { font-size: 28px; margin-bottom: 6px; }
-        .dif-item h4 { font-size: 12px; font-weight: 700; }
-        .dif-item p { font-size: 10px; color: var(--text-secondary); }
-
-        /* CTA */
-        .cta-section {
-            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-            color: #fff; text-align: center; padding: 40px 20px;
-        }
-        .cta-section h2 { font-size: 22px; margin-bottom: 8px; }
-        .cta-section p { font-size: 13px; opacity: 0.9; margin-bottom: 20px; }
-
-        /* FOOTER */
         footer {
-            background: #0f172a; color: #fff; text-align: center; padding: 30px 16px;
+            background: #0f172a;
+            color: #fff;
+            text-align: center;
+            padding: 24px 16px;
+            font-size: 12px;
         }
-        footer .logo-alpha { font-size: 24px; font-weight: 900; letter-spacing: 4px; }
-        footer .logo-solucao { font-size: 12px; font-weight: 600; letter-spacing: 2px; color: #60a5fa; }
-        footer .links { margin: 12px 0; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-        footer .links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 12px; }
-        footer p { font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 10px; }
+        footer .logo-alpha { font-size: 20px; font-weight: 900; letter-spacing: 3px; }
+        footer .logo-solucao { font-size: 10px; font-weight: 600; letter-spacing: 2px; color: #60a5fa; }
+        footer p { font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 8px; }
 
         @media (max-width: 400px) {
             .services-grid { grid-template-columns: 1fr; }
             .dif-grid { grid-template-columns: 1fr 1fr; }
-            .nav-links a { font-size: 10px; padding: 4px 6px; }
+            .nav-links button { font-size: 10px; padding: 5px 7px; }
+            .hero .logo-alpha { font-size: 32px; }
+            .hero h1 { font-size: 20px; }
         }
     </style>
 </head>
@@ -172,146 +252,328 @@
 
     <!-- NAVBAR -->
     <nav class="navbar">
-        <a href="index.html" class="nav-logo">ALPHA <span>CLEAN</span></a>
+        <a href="#" class="nav-brand" onclick="navegar('home')">ALPHA <span>CLEAN</span></a>
         <div class="nav-links">
-            <a href="index.html">Início</a>
-            <a href="orcamento.html">Orçamento</a>
-            <a href="blog.html">Dicas</a>
-            <a href="cliente.html" class="destaque">💰 Cashback</a>
+            <button onclick="navegar('home')" class="active" id="nav-home">Início</button>
+            <button onclick="navegar('orcamento')" id="nav-orcamento">Orçamento</button>
+            <button onclick="navegar('captura')" id="nav-captura">Cashback</button>
+            <button onclick="navegar('blog')" id="nav-blog">Dicas</button>
+            <button onclick="navegar('cliente')" id="nav-cliente">🔐</button>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <header class="hero">
-        <div class="logo-alpha">ALPHA</div>
-        <div class="logo-solucao">SOLUÇÃO CLEAN</div>
-        <div class="logo-tagline">Limpeza com Excelência</div>
-        <h1>Higienização que Transforma Ambientes</h1>
-        <p>Seu sofá, colchão e carro limpos com tecnologia profissional e <strong>10% de cashback</strong> em cada serviço</p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
-            <a href="orcamento.html" class="btn btn-gold">📋 Solicitar Orçamento</a>
-            <a href="captura.html" class="btn btn-outline-light">🎁 Quero Cashback</a>
-        </div>
-    </header>
+    <!-- ==================== PÁGINA HOME ==================== -->
+    <div class="page active" id="page-home">
+        <header class="hero">
+            <div class="logo-alpha">ALPHA</div>
+            <div class="logo-solucao">SOLUÇÃO CLEAN</div>
+            <div class="logo-tagline">Limpeza com Excelência</div>
+            <h1>Higienização que Transforma Ambientes</h1>
+            <p>Seu sofá, colchão e carro limpos com tecnologia profissional e <strong>10% de cashback</strong></p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+                <button class="btn btn-gold" onclick="navegar('orcamento')">📋 Solicitar Orçamento</button>
+                <button class="btn btn-outline" style="background:transparent;border:1px solid rgba(255,255,255,0.3);color:#fff;" onclick="navegar('captura')">🎁 Quero Cashback</button>
+            </div>
+        </header>
 
-    <!-- DIFERENCIAIS -->
-    <section class="section">
-        <div class="container">
-            <div class="dif-grid">
-                <div class="dif-item">
-                    <div class="icon">💧</div>
-                    <h4>Limpeza Profunda</h4>
-                    <p>Elimina ácaros e bactérias</p>
-                </div>
-                <div class="dif-item">
-                    <div class="icon">⚡</div>
-                    <h4>Secagem Rápida</h4>
-                    <p>Pronto em poucas horas</p>
-                </div>
-                <div class="dif-item">
-                    <div class="icon">🌿</div>
-                    <h4>Produtos Ecológicos</h4>
-                    <p>Seguros para família</p>
-                </div>
-                <div class="dif-item">
-                    <div class="icon">✅</div>
-                    <h4>Satisfação Garantida</h4>
-                    <p>Ou seu dinheiro de volta</p>
-                </div>
-                <div class="dif-item">
-                    <div class="icon">💰</div>
-                    <h4>Cashback 10%</h4>
-                    <p>Volta pra você</p>
-                </div>
-                <div class="dif-item">
-                    <div class="icon">⭐</div>
-                    <h4>5 Estrelas</h4>
-                    <p>Avaliação dos clientes</p>
+        <section class="section">
+            <div class="container">
+                <div class="dif-grid">
+                    <div class="dif-item"><div class="icon">💧</div><h4>Limpeza Profunda</h4><p>Elimina ácaros e bactérias</p></div>
+                    <div class="dif-item"><div class="icon">⚡</div><h4>Secagem Rápida</h4><p>Pronto em horas</p></div>
+                    <div class="dif-item"><div class="icon">🌿</div><h4>Produtos Eco</h4><p>Seguros para família</p></div>
+                    <div class="dif-item"><div class="icon">✅</div><h4>Satisfação</h4><p>Garantida</p></div>
+                    <div class="dif-item"><div class="icon">💰</div><h4>Cashback 10%</h4><p>Volta pra você</p></div>
+                    <div class="dif-item"><div class="icon">⭐</div><h4>5 Estrelas</h4><p>Avaliações</p></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- SERVIÇOS -->
-    <section class="section" style="background:var(--card);">
-        <div class="container">
-            <h2 class="section-title">Nossos Serviços</h2>
-            <p class="section-subtitle">Atendemos residências e empresas</p>
-            <div class="services-grid">
-                <div class="service-card" onclick="location.href='orcamento.html'">
-                    <div class="icon">🛋️</div>
-                    <h3>Higienização de Sofá</h3>
-                </div>
-                <div class="service-card" onclick="location.href='orcamento.html'">
-                    <div class="icon">🛏️</div>
-                    <h3>Higienização de Colchão</h3>
-                </div>
-                <div class="service-card" onclick="location.href='orcamento.html'">
-                    <div class="icon">🪑</div>
-                    <h3>Higienização de Cadeira</h3>
-                </div>
-                <div class="service-card" onclick="location.href='orcamento.html'">
-                    <div class="icon">🚗</div>
-                    <h3>Interior de Carro</h3>
-                </div>
-                <div class="service-card" onclick="location.href='orcamento.html'" style="grid-column:1/-1;">
-                    <div class="icon">🌿</div>
-                    <h3>Lavagem Ecológica de Carro</h3>
+        <section class="section" style="background:var(--card);">
+            <div class="container">
+                <h2 class="section-title">Nossos Serviços</h2>
+                <p class="section-subtitle">Toque para solicitar orçamento</p>
+                <div class="services-grid">
+                    <div class="service-card" onclick="selecionarServico('Higienização de Sofá')"><div class="icon">🛋️</div><h3>Higienização de Sofá</h3></div>
+                    <div class="service-card" onclick="selecionarServico('Higienização de Colchão')"><div class="icon">🛏️</div><h3>Higienização de Colchão</h3></div>
+                    <div class="service-card" onclick="selecionarServico('Higienização de Cadeira')"><div class="icon">🪑</div><h3>Higienização de Cadeira</h3></div>
+                    <div class="service-card" onclick="selecionarServico('Interior de Carro')"><div class="icon">🚗</div><h3>Interior de Carro</h3></div>
+                    <div class="service-card" onclick="selecionarServico('Lavagem Ecológica')" style="grid-column:1/-1;"><div class="icon">🌿</div><h3>Lavagem Ecológica de Carro</h3></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CASHBACK -->
-    <section class="section">
-        <div class="container">
-            <div class="cashback-box">
-                <div class="percent">10%</div>
-                <h3>Programa de Cashback</h3>
-                <p>A cada serviço, <strong>10% do valor</strong> volta como saldo para você usar como desconto no próximo!</p>
-                <a href="captura.html" class="btn btn-gold" style="margin-top:16px;">🎁 Quero Participar</a>
+        <section class="section">
+            <div class="container">
+                <div class="cashback-box">
+                    <div class="percent">10%</div>
+                    <h3>Programa de Cashback</h3>
+                    <p>A cada serviço, <strong>10% do valor</strong> volta como saldo para usar no próximo!</p>
+                    <button class="btn btn-gold mt-16" onclick="navegar('captura')">🎁 Quero Participar</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background:var(--card);">
+            <div class="container text-center">
+                <h2 class="section-title">Dicas de Limpeza</h2>
+                <p class="section-subtitle">Aprenda a conservar seus estofados</p>
+                <button class="btn btn-primary" onclick="navegar('blog')">📖 Ver Blog</button>
+            </div>
+        </section>
+
+        <footer>
+            <div class="logo-alpha">ALPHA</div>
+            <div class="logo-solucao">SOLUÇÃO CLEAN</div>
+            <p>© 2024 Alpha Solução Clean - Limpeza com Excelência</p>
+            <p style="margin-top:4px;">
+                <a href="admin.html" style="color:rgba(255,255,255,0.2);font-size:9px;">Admin</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- ==================== PÁGINA ORÇAMENTO ==================== -->
+    <div class="page" id="page-orcamento">
+        <div class="container section">
+            <div class="header-logo text-center mb-16">
+                <div style="font-size:28px;font-weight:900;letter-spacing:4px;color:var(--blue-dark);">ALPHA</div>
+                <div style="font-size:13px;font-weight:600;letter-spacing:2px;color:var(--blue);">SOLUÇÃO CLEAN</div>
+                <p style="font-size:11px;color:var(--text-secondary);">Orçamento em até 10 minutos!</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">📋 Qual serviço você precisa?</div>
+                <div class="services-grid mb-16" id="orcamentoServices">
+                    <div class="service-card" onclick="toggleServicoOrcamento(this)" data-servico="Higienização de Sofá"><div class="icon">🛋️</div><h3>Sofá</h3></div>
+                    <div class="service-card" onclick="toggleServicoOrcamento(this)" data-servico="Higienização de Colchão"><div class="icon">🛏️</div><h3>Colchão</h3></div>
+                    <div class="service-card" onclick="toggleServicoOrcamento(this)" data-servico="Higienização de Cadeira"><div class="icon">🪑</div><h3>Cadeira</h3></div>
+                    <div class="service-card" onclick="toggleServicoOrcamento(this)" data-servico="Interior de Carro"><div class="icon">🚗</div><h3>Interior Carro</h3></div>
+                    <div class="service-card" onclick="toggleServicoOrcamento(this)" data-servico="Lavagem Ecológica" style="grid-column:1/-1;"><div class="icon">🌿</div><h3>Lavagem Ecológica</h3></div>
+                </div>
+                <div class="form-group">
+                    <label>Quantidade</label>
+                    <input type="number" id="qtdOrcamento" placeholder="Ex: 2" min="1" value="1">
+                </div>
+                <div class="form-group">
+                    <label>Seu nome</label>
+                    <input type="text" id="nomeOrcamento" placeholder="Nome completo">
+                </div>
+                <div class="form-group">
+                    <label>Bairro e Cidade</label>
+                    <input type="text" id="enderecoOrcamento" placeholder="Bairro, Cidade">
+                </div>
+                <div class="form-group">
+                    <label>Observações</label>
+                    <textarea id="obsOrcamento" placeholder="Algum detalhe importante..."></textarea>
+                </div>
+                <button class="btn btn-whatsp btn-full" onclick="enviarOrcamento()">💬 Solicitar Orçamento via WhatsApp</button>
+            </div>
+
+            <div class="card text-center">
+                <div class="card-title">💰 Já é cliente?</div>
+                <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;">Acesse seu cashback</p>
+                <button class="btn btn-outline" onclick="navegar('cliente')">🔐 Acessar Conta</button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- BLOG -->
-    <section class="section" style="background:var(--card);">
-        <div class="container">
-            <h2 class="section-title">Dicas de Limpeza</h2>
-            <p class="section-subtitle">Aprenda a conservar seus estofados</p>
-            <div style="text-align:center;">
-                <a href="blog.html" class="btn btn-primary">📖 Ver Blog</a>
+    <!-- ==================== PÁGINA CAPTURA ==================== -->
+    <div class="page" id="page-captura">
+        <div class="container section">
+            <div class="card text-center" style="background:linear-gradient(135deg, var(--blue-dark), var(--blue));color:#fff;">
+                <div style="font-size:28px;font-weight:900;letter-spacing:4px;">ALPHA</div>
+                <div style="font-size:13px;font-weight:600;letter-spacing:2px;color:rgba(255,255,255,0.8);">SOLUÇÃO CLEAN</div>
+                <div class="badge" style="display:inline-block;background:var(--gold);color:#1a1a1a;padding:6px 16px;border-radius:20px;font-weight:700;margin:16px 0;">🎁 10% DE CASHBACK</div>
+                <h2 style="margin:8px 0;">Ganhe dinheiro de volta!</h2>
+                <p style="color:rgba(255,255,255,0.8);font-size:13px;">A cada serviço, <strong>10% do valor</strong> volta como saldo</p>
+            </div>
+
+            <div class="card">
+                <ul style="list-style:none;font-size:13px;line-height:2.2;">
+                    <li>✅ Cashback vitalício em todos os serviços</li>
+                    <li>✅ Saldo disponível 24h após o serviço</li>
+                    <li>✅ Acompanhe pelo portal do cliente</li>
+                    <li>✅ Use como desconto ou acumule</li>
+                    <li>✅ Indique amigos e ganhe bônus</li>
+                </ul>
+                <button class="btn btn-whatsp btn-full mt-16" onclick="whatsappCashback()">💬 Quero participar - WhatsApp</button>
+                <button class="btn btn-outline btn-full mt-10" onclick="navegar('cliente')">🔐 Já sou cliente</button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- CTA -->
-    <section class="cta-section">
-        <h2>Pronto para transformar seu ambiente?</h2>
-        <p>Solicite um orçamento agora mesmo. Resposta em até 10 minutos!</p>
-        <a href="orcamento.html" class="btn btn-gold">📋 Solicitar Orçamento Grátis</a>
-    </section>
+    <!-- ==================== PÁGINA BLOG ==================== -->
+    <div class="page" id="page-blog">
+        <div class="container section">
+            <div class="text-center mb-16">
+                <div style="font-size:28px;font-weight:900;letter-spacing:4px;color:var(--blue-dark);">ALPHA</div>
+                <div style="font-size:13px;font-weight:600;letter-spacing:2px;color:var(--blue);">SOLUÇÃO CLEAN</div>
+                <p style="font-size:11px;color:var(--text-secondary);">Dicas de Limpeza Profissional</p>
+            </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="logo-alpha">ALPHA</div>
-        <div class="logo-solucao">SOLUÇÃO CLEAN</div>
-        <div class="links">
-            <a href="index.html">Início</a>
-            <a href="orcamento.html">Orçamento</a>
-            <a href="blog.html">Blog</a>
-            <a href="cliente.html">Cashback</a>
-            <a href="admin.html">Admin</a>
+            <div class="card">
+                <div class="icon" style="font-size:32px;">🛋️</div>
+                <h2 style="font-size:16px;color:var(--blue-dark);margin-bottom:8px;">Como conservar seu sofá</h2>
+                <p style="font-size:12px;color:var(--text-secondary);line-height:1.8;">
+                    1. Aspire semanalmente com escova macia<br>
+                    2. Evite comer no sofá<br>
+                    3. Gire as almofadas a cada 15 dias<br>
+                    4. Não use produtos químicos sem orientação<br>
+                    5. Higienização profissional a cada 6 meses<br><br>
+                    <strong>Dica Alpha:</strong> Manchas? Não esfregue! Pressione com pano branco úmido.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon" style="font-size:32px;">🛏️</div>
+                <h2 style="font-size:16px;color:var(--blue-dark);margin-bottom:8px;">Colchão limpo = sono saudável</h2>
+                <p style="font-size:12px;color:var(--text-secondary);line-height:1.8;">
+                    1. Troque a roupa de cama toda semana<br>
+                    2. Aspire o colchão a cada 15 dias<br>
+                    3. Deixe o quarto arejar 30min/dia<br>
+                    4. Use protetor impermeável<br>
+                    5. Higienização a cada 6 meses<br><br>
+                    <strong>Sabia?</strong> Um colchão acumula até 2kg de ácaros em 2 anos!
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon" style="font-size:32px;">🚗</div>
+                <h2 style="font-size:16px;color:var(--blue-dark);margin-bottom:8px;">Carro sempre novo</h2>
+                <p style="font-size:12px;color:var(--text-secondary);line-height:1.8;">
+                    1. Aspire tapetes e bancos toda semana<br>
+                    2. Use lixeira portátil<br>
+                    3. Evite comer dentro do carro<br>
+                    4. Proteja bancos do sol<br>
+                    5. Lavagem ecológica a cada 3 meses<br><br>
+                    <strong>Economia:</strong> Carro limpo vale mais na revenda!
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon" style="font-size:32px;">🌿</div>
+                <h2 style="font-size:16px;color:var(--blue-dark);margin-bottom:8px;">Lavagem Ecológica</h2>
+                <p style="font-size:12px;color:var(--text-secondary);line-height:1.8;">
+                    1. Economiza até 300L de água<br>
+                    2. Produtos biodegradáveis<br>
+                    3. Não danifica a pintura<br>
+                    4. Secagem rápida<br>
+                    5. Pode ser feita em qualquer lugar
+                </p>
+            </div>
         </div>
-        <p>© 2024 Alpha Solução Clean - Limpeza com Excelência</p>
-    </footer>
+    </div>
 
-    <a href="#" class="btn-whatsapp" id="whatsappBtn" target="_blank">💬 Orçamento</a>
+    <!-- ==================== PÁGINA CLIENTE ==================== -->
+    <div class="page" id="page-cliente">
+        <div class="container section">
+            <div class="text-center mb-16">
+                <div style="font-size:28px;font-weight:900;letter-spacing:4px;color:var(--blue-dark);">ALPHA</div>
+                <div style="font-size:13px;font-weight:600;letter-spacing:2px;color:var(--blue);">SOLUÇÃO CLEAN</div>
+                <p style="font-size:11px;color:var(--text-secondary);">Área do Cliente</p>
+            </div>
+
+            <div class="card text-center" id="loginCard">
+                <h3 style="color:var(--blue-dark);margin-bottom:4px;">🔐 Acesse seu Cashback</h3>
+                <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;">Digite o código de acesso</p>
+                <div class="form-group">
+                    <input type="text" id="codigoAcesso" placeholder="000000" maxlength="6" inputmode="numeric" style="font-size:24px;text-align:center;letter-spacing:8px;font-weight:700;">
+                </div>
+                <button class="btn btn-primary btn-full" onclick="loginCliente()">✨ Entrar</button>
+                <p style="font-size:10px;color:var(--text-muted);margin-top:10px;">Código enviado pelo WhatsApp</p>
+            </div>
+
+            <div id="clienteLogado" style="display:none;">
+                <div class="card text-center" style="background:var(--gold-bg);border:1px solid rgba(201,168,76,0.3);">
+                    <div style="font-size:44px;font-weight:900;color:#b8860b;" id="saldoCliente">R$ 0,00</div>
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#8b6914;font-weight:600;">Saldo Cashback <span style="background:var(--gold);color:#fff;padding:2px 8px;border-radius:10px;font-size:9px;">10%</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">📋 Histórico</div>
+                    <div id="historicoCliente"><p style="text-align:center;color:var(--text-muted);font-size:13px;">Nenhuma transação</p></div>
+                </div>
+
+                <button class="btn btn-outline btn-full mt-10" onclick="logoutCliente()">🔒 Sair</button>
+            </div>
+
+            <p style="text-align:center;font-size:10px;color:var(--text-muted);margin-top:16px;">
+                <a href="admin.html" style="color:var(--text-muted);">Painel Admin</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- WhatsApp Flutuante -->
+    <a href="#" class="whatsapp-float" id="whatsappFloat" target="_blank">💬 Orçamento</a>
 
     <script>
+        // ============ CONFIG ============
         const API_KEY = '$2a$10$4L9JW3FJilcxJxYzakIlaeAKtcCqrLoQWP4mGAmN81OaT3ih4M9Ey';
+        const CLIENTES_BIN_ID = '69f51701aaba8821975ec0e9';
         const CONFIG_BIN_ID = '69f51754856a68218996c653';
-        async function loadConfig() {
+        let paginaAtual = 'home';
+        let servicosOrcamento = [];
+        let clienteLogadoData = null;
+
+        // ============ NAVEGAÇÃO ============
+        function navegar(pagina) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + pagina).classList.add('active');
+            document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+            const navBtn = document.getElementById('nav-' + pagina);
+            if (navBtn) navBtn.classList.add('active');
+            paginaAtual = pagina;
+            window.scrollTo(0, 0);
+        }
+
+        function selecionarServico(servico) {
+            servicosOrcamento = [servico];
+            navegar('orcamento');
+            setTimeout(() => {
+                document.querySelectorAll('#orcamentoServices .service-card').forEach(card => {
+                    card.classList.remove('selected');
+                    if (card.dataset.servico === servico) card.classList.add('selected');
+                });
+            }, 100);
+        }
+
+        function toggleServicoOrcamento(card) {
+            card.classList.toggle('selected');
+            const servico = card.dataset.servico;
+            if (card.classList.contains('selected')) {
+                if (!servicosOrcamento.includes(servico)) servicosOrcamento.push(servico);
+            } else {
+                servicosOrcamento = servicosOrcamento.filter(s => s !== servico);
+            }
+        }
+
+        // ============ ORÇAMENTO ============
+        async function enviarOrcamento() {
+            if (servicosOrcamento.length === 0) { alert('Selecione pelo menos um serviço'); return; }
+            const nome = document.getElementById('nomeOrcamento').value.trim();
+            const endereco = document.getElementById('enderecoOrcamento').value.trim();
+            if (!nome) { alert('Informe seu nome'); return; }
+            if (!endereco) { alert('Informe bairro e cidade'); return; }
+
+            const qtd = document.getElementById('qtdOrcamento').value || 1;
+            const obs = document.getElementById('obsOrcamento').value.trim();
+            let msg = `Olá! Gostaria de solicitar um orçamento:%0A%0A`;
+            msg += `📋 Serviço: ${servicosOrcamento.join(' + ')}%0A`;
+            msg += `🔢 Quantidade: ${qtd}%0A`;
+            msg += `👤 Nome: ${nome}%0A`;
+            msg += `📍 Endereço: ${endereco}%0A`;
+            if (obs) msg += `📝 Obs: ${obs}%0A`;
+            msg += `%0A Aguardo seu retorno! 🧹✨`;
+
+            await abrirWhatsApp(msg);
+        }
+
+        async function whatsappCashback() {
+            const msg = `Olá! Quero participar do programa de cashback da Alpha Solução Clean! 🎁`;
+            await abrirWhatsApp(msg);
+        }
+
+        async function abrirWhatsApp(msg) {
             try {
                 const resp = await fetch(`https://api.jsonbin.io/v3/b/${CONFIG_BIN_ID}/latest`, {
                     headers: { 'X-Master-Key': API_KEY }
@@ -320,11 +582,78 @@
                 const config = data.record;
                 if (config.telefoneEmpresa) {
                     const num = config.telefoneEmpresa.replace(/\D/g, '');
-                    document.getElementById('whatsappBtn').href = `https://wa.me/55${num}?text=Olá!%20Gostaria%20de%20um%20orçamento.`;
+                    window.open(`https://wa.me/55${num}?text=${msg}`, '_blank');
+                    return;
+                }
+            } catch(e) {}
+            window.open(`https://wa.me/?text=${msg}`, '_blank');
+        }
+
+        // ============ CLIENTE ============
+        async function loginCliente() {
+            const codigo = document.getElementById('codigoAcesso').value.trim();
+            if (!codigo) return;
+
+            const resp = await fetch(`https://api.jsonbin.io/v3/b/${CLIENTES_BIN_ID}/latest`, {
+                headers: { 'X-Master-Key': API_KEY }
+            });
+            const data = await resp.json();
+            const cliente = data.record.find(c => c.codigoAcesso === codigo && c.nome !== 'Cliente Exemplo');
+
+            if (cliente) {
+                clienteLogadoData = cliente;
+                document.getElementById('loginCard').style.display = 'none';
+                document.getElementById('clienteLogado').style.display = '';
+                document.getElementById('saldoCliente').textContent = 'R$ ' + cliente.saldoCashback.toFixed(2).replace('.', ',');
+                renderHistoricoCliente();
+            } else {
+                alert('Código inválido. Verifique e tente novamente.');
+            }
+        }
+
+        function renderHistoricoCliente() {
+            const container = document.getElementById('historicoCliente');
+            const transacoes = clienteLogadoData.transacoes || [];
+            if (transacoes.length === 0) {
+                container.innerHTML = '<p style="text-align:center;color:var(--text-muted);font-size:13px;">Nenhuma transação</p>';
+                return;
+            }
+            container.innerHTML = [...transacoes].reverse().slice(0, 15).map(t => {
+                let cor = 'var(--blue)';
+                let sinal = '';
+                if (t.tipo === 'cashback_ganho') { cor = '#b8860b'; sinal = '+'; }
+                else if (t.tipo === 'cashback_usado') { cor = 'var(--red)'; sinal = '-'; }
+                const data = new Date(t.data).toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit' });
+                return `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;">
+                    <span>${t.descricao}<br><small style="color:var(--text-muted);">${data}</small></span>
+                    <strong style="color:${cor};">${sinal} R$ ${t.valor.toFixed(2)}</strong>
+                </div>`;
+            }).join('');
+        }
+
+        function logoutCliente() {
+            clienteLogadoData = null;
+            document.getElementById('loginCard').style.display = '';
+            document.getElementById('clienteLogado').style.display = 'none';
+            document.getElementById('codigoAcesso').value = '';
+        }
+
+        // ============ WHATSAPP FLOAT ============
+        async function initWhatsAppFloat() {
+            try {
+                const resp = await fetch(`https://api.jsonbin.io/v3/b/${CONFIG_BIN_ID}/latest`, {
+                    headers: { 'X-Master-Key': API_KEY }
+                });
+                const data = await resp.json();
+                const config = data.record;
+                if (config.telefoneEmpresa) {
+                    const num = config.telefoneEmpresa.replace(/\D/g, '');
+                    document.getElementById('whatsappFloat').href = `https://wa.me/55${num}?text=Olá!%20Gostaria%20de%20um%20orçamento.`;
                 }
             } catch(e) {}
         }
-        loadConfig();
+
+        initWhatsAppFloat();
     </script>
 </body>
 </html>
