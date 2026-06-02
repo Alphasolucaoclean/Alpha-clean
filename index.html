@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alpha Solução Clean - Higienização Profissional</title>
-    <meta name="description" content="Alpha Solução Clean - Higienização de sofás, colchões, cadeiras, interior de carro e lavagem ecológica. Programa de cashback 10%.">
+    <meta name="description" content="Alpha Solução Clean - Higienização de sofás, colchões, cadeiras, interiores e lavagem ecológica. 10% de cashback.">
     <style>
         :root {
-            --bg: #f8fafc;
-            --card: #ffffff;
-            --border: #e2e8f0;
             --gold: #c9a84c;
             --gold-bg: #fef9e7;
             --blue: #2563eb;
@@ -17,52 +14,64 @@
             --green: #16a34a;
             --text: #1e293b;
             --text-secondary: #64748b;
-            --shadow: 0 1px 3px rgba(0,0,0,0.06);
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --shadow: 0 2px 8px rgba(0,0,0,0.06);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
-            background: var(--bg);
+            background: #f8fafc;
             color: var(--text);
-            min-height: 100vh;
+            line-height: 1.6;
         }
 
+        /* NAVBAR */
+        .navbar {
+            background: #0f172a;
+            padding: 12px 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            color: #fff;
+            font-weight: 900;
+            letter-spacing: 2px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--gold); }
+        .nav-links { display: flex; gap: 6px; overflow-x: auto; }
+        .nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+            transition: all .2s;
+        }
+        .nav-links a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .nav-links a.destaque { background: var(--gold); color: #000; font-weight: 700; }
+
+        /* HERO */
         .hero {
             background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
             color: #fff;
             text-align: center;
-            padding: 50px 20px 35px;
+            padding: 60px 20px 50px;
         }
-        .logo-hero {
-            display: inline-block;
-            text-align: center;
-            margin-bottom: 16px;
-        }
-        .logo-alpha {
-            font-size: 40px;
-            font-weight: 900;
-            letter-spacing: 6px;
-            color: #fff;
-            line-height: 1;
-        }
-        .logo-solucao {
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: 3px;
-            color: #60a5fa;
-            margin-top: 2px;
-        }
-        .logo-tagline {
-            font-size: 9px;
-            letter-spacing: 4px;
-            color: rgba(255,255,255,0.5);
-            margin-top: 4px;
-            text-transform: uppercase;
-        }
-        .hero h1 { font-size: 24px; margin: 12px 0 6px; }
-        .hero p { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 20px; }
+        .hero .logo-alpha { font-size: 42px; font-weight: 900; letter-spacing: 6px; }
+        .hero .logo-solucao { font-size: 18px; font-weight: 600; letter-spacing: 3px; color: #60a5fa; }
+        .hero .logo-tagline { font-size: 9px; letter-spacing: 4px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+        .hero h1 { font-size: 26px; margin: 10px 0; }
+        .hero p { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 24px; max-width: 400px; margin-left: auto; margin-right: auto; }
 
         .btn {
             padding: 14px 24px;
@@ -75,189 +84,224 @@
             align-items: center;
             gap: 8px;
             border: none;
-            transition: all .2s;
+            transition: all .3s;
         }
-        .btn-gold {
-            background: var(--gold);
-            color: #1a1a1a;
-            box-shadow: 0 4px 15px rgba(201,168,76,0.4);
-        }
-        .btn-outline-light {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.3);
-            color: #fff;
-        }
+        .btn-gold { background: var(--gold); color: #1a1a1a; box-shadow: 0 4px 15px rgba(201,168,76,0.4); }
+        .btn-gold:hover { background: #d4b85c; transform: translateY(-2px); }
+        .btn-outline-light { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff; }
+        .btn-primary { background: var(--blue); color: #fff; box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
+        .btn-primary:hover { background: #3b82f6; transform: translateY(-2px); }
         .btn-whatsapp {
-            background: #25D366;
-            color: #fff;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 50;
-            border-radius: 50px;
-            padding: 12px 20px;
+            background: #25D366; color: #fff;
+            position: fixed; bottom: 20px; right: 20px; z-index: 50;
+            border-radius: 50px; padding: 12px 20px;
             box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            animation: pulse 2s infinite;
+            animation: pulse 2s infinite; text-decoration: none;
+            font-weight: 600; font-size: 14px;
         }
         @keyframes pulse {
             0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
             50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); }
         }
 
-        .container { max-width: 500px; margin: 0 auto; padding: 0 16px; }
-        .section { padding: 35px 0; }
+        .container { max-width: 600px; margin: 0 auto; padding: 0 16px; }
+        .section { padding: 45px 0; }
         .section-title {
-            text-align: center;
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: var(--blue-dark);
+            text-align: center; font-size: 22px; font-weight: 700;
+            margin-bottom: 8px; color: var(--blue-dark);
         }
         .section-subtitle {
-            text-align: center;
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
+            text-align: center; font-size: 13px; color: var(--text-secondary); margin-bottom: 28px;
         }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
+        /* SERVIÇOS */
+        .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .service-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 18px 14px;
-            text-align: center;
-            box-shadow: var(--shadow);
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 14px; padding: 20px 14px; text-align: center;
+            box-shadow: var(--shadow); transition: all .3s; cursor: pointer;
         }
-        .service-card .icon { font-size: 32px; margin-bottom: 6px; }
+        .service-card:hover { border-color: var(--blue); transform: translateY(-3px); }
+        .service-card .icon { font-size: 36px; margin-bottom: 8px; }
         .service-card h3 { font-size: 13px; font-weight: 600; }
 
+        /* CASHBACK */
         .cashback-box {
-            background: var(--gold-bg);
-            border: 1px solid rgba(201,168,76,0.3);
-            border-radius: 16px;
-            padding: 24px;
-            text-align: center;
+            background: var(--gold-bg); border: 1px solid rgba(201,168,76,0.3);
+            border-radius: 16px; padding: 28px; text-align: center;
         }
-        .cashback-box .percent {
-            font-size: 52px;
-            font-weight: 900;
-            color: #b8860b;
-        }
-        .cashback-box h3 { font-size: 16px; margin: 6px 0; color: #8b6914; }
+        .cashback-box .percent { font-size: 56px; font-weight: 900; color: #b8860b; }
+        .cashback-box h3 { font-size: 18px; margin: 6px 0; color: #8b6914; }
         .cashback-box p { font-size: 13px; color: var(--text-secondary); }
 
-        .testimonial {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 18px;
-            margin-bottom: 10px;
-            box-shadow: var(--shadow);
-        }
-        .testimonial .stars { color: var(--gold); font-size: 16px; }
-        .testimonial p { font-size: 13px; font-style: italic; margin: 6px 0; }
-        .testimonial .author { font-size: 11px; color: var(--text-secondary); font-weight: 600; }
+        /* DIFERENCIAIS */
+        .dif-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; text-align: center; }
+        .dif-item { padding: 16px 8px; }
+        .dif-item .icon { font-size: 28px; margin-bottom: 6px; }
+        .dif-item h4 { font-size: 12px; font-weight: 700; }
+        .dif-item p { font-size: 10px; color: var(--text-secondary); }
 
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            color: #fff; text-align: center; padding: 40px 20px;
+        }
+        .cta-section h2 { font-size: 22px; margin-bottom: 8px; }
+        .cta-section p { font-size: 13px; opacity: 0.9; margin-bottom: 20px; }
+
+        /* FOOTER */
         footer {
-            background: #0f172a;
-            color: #fff;
-            text-align: center;
-            padding: 24px 16px;
-            font-size: 12px;
+            background: #0f172a; color: #fff; text-align: center; padding: 30px 16px;
         }
-        footer .logo-footer {
-            font-size: 22px;
-            font-weight: 900;
-            letter-spacing: 4px;
-            margin-bottom: 2px;
-        }
-        footer .logo-footer-sub {
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            color: #60a5fa;
-        }
-        footer .logo-footer-tagline {
-            font-size: 8px;
-            letter-spacing: 3px;
-            color: rgba(255,255,255,0.4);
-        }
+        footer .logo-alpha { font-size: 24px; font-weight: 900; letter-spacing: 4px; }
+        footer .logo-solucao { font-size: 12px; font-weight: 600; letter-spacing: 2px; color: #60a5fa; }
+        footer .links { margin: 12px 0; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        footer .links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 12px; }
+        footer p { font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 10px; }
 
-        @media (max-width: 380px) {
+        @media (max-width: 400px) {
             .services-grid { grid-template-columns: 1fr; }
+            .dif-grid { grid-template-columns: 1fr 1fr; }
+            .nav-links a { font-size: 10px; padding: 4px 6px; }
         }
     </style>
 </head>
 <body>
 
-    <header class="hero">
-        <div class="logo-hero">
-            <div class="logo-alpha">ALPHA</div>
-            <div class="logo-solucao">SOLUÇÃO CLEAN</div>
-            <div class="logo-tagline">Limpeza com Excelência</div>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">ALPHA <span>CLEAN</span></a>
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="orcamento.html">Orçamento</a>
+            <a href="blog.html">Dicas</a>
+            <a href="cliente.html" class="destaque">💰 Cashback</a>
         </div>
-        <h1>Higienização Profissional</h1>
-        <p>Sofás, colchões, cadeiras, carros e muito mais com <strong>10% de cashback</strong> em cada serviço</p>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="logo-alpha">ALPHA</div>
+        <div class="logo-solucao">SOLUÇÃO CLEAN</div>
+        <div class="logo-tagline">Limpeza com Excelência</div>
+        <h1>Higienização que Transforma Ambientes</h1>
+        <p>Seu sofá, colchão e carro limpos com tecnologia profissional e <strong>10% de cashback</strong> em cada serviço</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
-            <a href="cliente.html" class="btn btn-gold">💰 Meu Cashback</a>
-            <a href="admin.html" class="btn btn-outline-light">🔐 Admin</a>
+            <a href="orcamento.html" class="btn btn-gold">📋 Solicitar Orçamento</a>
+            <a href="captura.html" class="btn btn-outline-light">🎁 Quero Cashback</a>
         </div>
     </header>
 
+    <!-- DIFERENCIAIS -->
     <section class="section">
         <div class="container">
-            <h2 class="section-title">Nossos Serviços</h2>
-            <p class="section-subtitle">Qualidade e cuidado em cada detalhe</p>
-            <div class="services-grid">
-                <div class="service-card"><div class="icon">🛋️</div><h3>Higienização de Sofá</h3></div>
-                <div class="service-card"><div class="icon">🛏️</div><h3>Higienização de Colchão</h3></div>
-                <div class="service-card"><div class="icon">🪑</div><h3>Higienização de Cadeira</h3></div>
-                <div class="service-card"><div class="icon">🚗</div><h3>Interior de Carro</h3></div>
-                <div class="service-card" style="grid-column:1/-1;"><div class="icon">🌿</div><h3>Lavagem Ecológica de Carro</h3></div>
+            <div class="dif-grid">
+                <div class="dif-item">
+                    <div class="icon">💧</div>
+                    <h4>Limpeza Profunda</h4>
+                    <p>Elimina ácaros e bactérias</p>
+                </div>
+                <div class="dif-item">
+                    <div class="icon">⚡</div>
+                    <h4>Secagem Rápida</h4>
+                    <p>Pronto em poucas horas</p>
+                </div>
+                <div class="dif-item">
+                    <div class="icon">🌿</div>
+                    <h4>Produtos Ecológicos</h4>
+                    <p>Seguros para família</p>
+                </div>
+                <div class="dif-item">
+                    <div class="icon">✅</div>
+                    <h4>Satisfação Garantida</h4>
+                    <p>Ou seu dinheiro de volta</p>
+                </div>
+                <div class="dif-item">
+                    <div class="icon">💰</div>
+                    <h4>Cashback 10%</h4>
+                    <p>Volta pra você</p>
+                </div>
+                <div class="dif-item">
+                    <div class="icon">⭐</div>
+                    <h4>5 Estrelas</h4>
+                    <p>Avaliação dos clientes</p>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- SERVIÇOS -->
     <section class="section" style="background:var(--card);">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <p class="section-subtitle">Atendemos residências e empresas</p>
+            <div class="services-grid">
+                <div class="service-card" onclick="location.href='orcamento.html'">
+                    <div class="icon">🛋️</div>
+                    <h3>Higienização de Sofá</h3>
+                </div>
+                <div class="service-card" onclick="location.href='orcamento.html'">
+                    <div class="icon">🛏️</div>
+                    <h3>Higienização de Colchão</h3>
+                </div>
+                <div class="service-card" onclick="location.href='orcamento.html'">
+                    <div class="icon">🪑</div>
+                    <h3>Higienização de Cadeira</h3>
+                </div>
+                <div class="service-card" onclick="location.href='orcamento.html'">
+                    <div class="icon">🚗</div>
+                    <h3>Interior de Carro</h3>
+                </div>
+                <div class="service-card" onclick="location.href='orcamento.html'" style="grid-column:1/-1;">
+                    <div class="icon">🌿</div>
+                    <h3>Lavagem Ecológica de Carro</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASHBACK -->
+    <section class="section">
         <div class="container">
             <div class="cashback-box">
                 <div class="percent">10%</div>
                 <h3>Programa de Cashback</h3>
                 <p>A cada serviço, <strong>10% do valor</strong> volta como saldo para você usar como desconto no próximo!</p>
-                <a href="cliente.html" class="btn btn-gold" style="display:inline-flex;margin-top:14px;">💰 Consultar Meu Saldo</a>
+                <a href="captura.html" class="btn btn-gold" style="margin-top:16px;">🎁 Quero Participar</a>
             </div>
         </div>
     </section>
 
-    <section class="section">
+    <!-- BLOG -->
+    <section class="section" style="background:var(--card);">
         <div class="container">
-            <h2 class="section-title">Clientes Satisfeitos</h2>
-            <div class="testimonial">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p>"Meu sofá ficou como novo! E ainda ganhei cashback para o próximo serviço. Incrível!"</p>
-                <div class="author">— Maria S.</div>
-            </div>
-            <div class="testimonial">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p>"Lavagem ecológica do carro, nota 10! Sustentabilidade e qualidade."</p>
-                <div class="author">— João P.</div>
+            <h2 class="section-title">Dicas de Limpeza</h2>
+            <p class="section-subtitle">Aprenda a conservar seus estofados</p>
+            <div style="text-align:center;">
+                <a href="blog.html" class="btn btn-primary">📖 Ver Blog</a>
             </div>
         </div>
     </section>
 
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Pronto para transformar seu ambiente?</h2>
+        <p>Solicite um orçamento agora mesmo. Resposta em até 10 minutos!</p>
+        <a href="orcamento.html" class="btn btn-gold">📋 Solicitar Orçamento Grátis</a>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
-        <div class="logo-footer">ALPHA</div>
-        <div class="logo-footer-sub">SOLUÇÃO CLEAN</div>
-        <div class="logo-footer-tagline">LIMPEZA COM EXCELÊNCIA</div>
-        <p style="margin-top:8px;">© 2024 Todos os direitos reservados</p>
+        <div class="logo-alpha">ALPHA</div>
+        <div class="logo-solucao">SOLUÇÃO CLEAN</div>
+        <div class="links">
+            <a href="index.html">Início</a>
+            <a href="orcamento.html">Orçamento</a>
+            <a href="blog.html">Blog</a>
+            <a href="cliente.html">Cashback</a>
+            <a href="admin.html">Admin</a>
+        </div>
+        <p>© 2024 Alpha Solução Clean - Limpeza com Excelência</p>
     </footer>
 
     <a href="#" class="btn-whatsapp" id="whatsappBtn" target="_blank">💬 Orçamento</a>
@@ -265,7 +309,6 @@
     <script>
         const API_KEY = '$2a$10$4L9JW3FJilcxJxYzakIlaeAKtcCqrLoQWP4mGAmN81OaT3ih4M9Ey';
         const CONFIG_BIN_ID = '69f51754856a68218996c653';
-
         async function loadConfig() {
             try {
                 const resp = await fetch(`https://api.jsonbin.io/v3/b/${CONFIG_BIN_ID}/latest`, {
@@ -275,12 +318,9 @@
                 const config = data.record;
                 if (config.telefoneEmpresa) {
                     const num = config.telefoneEmpresa.replace(/\D/g, '');
-                    const msg = encodeURIComponent('Olá! Gostaria de solicitar um orçamento.');
-                    document.getElementById('whatsappBtn').href = `https://wa.me/55${num}?text=${msg}`;
+                    document.getElementById('whatsappBtn').href = `https://wa.me/55${num}?text=Olá!%20Gostaria%20de%20um%20orçamento.`;
                 }
-            } catch(e) {
-                console.log('Config não carregada');
-            }
+            } catch(e) {}
         }
         loadConfig();
     </script>
